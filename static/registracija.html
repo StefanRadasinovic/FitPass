@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Registracija</title>
+    <script src="external/jquery.min.js"></script>
+	<link rel="stylesheet" href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	<script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	
+	<script src="js/registracija.js"></script>
+	
+</head>
+<body>
+
+<header class="text-center mt-5 mb-5">
+	<h1>Registracija</h1>
+</header>
+
+<form id="registracija">
+	<div class="form-group">		
+		<label for="exampleInputEmail1">Ime</label> 
+		<input type="text" class="form-control" id="ime" aria-describedby="emailHelp" placeholder="Ime" name="ime" required>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputPassword1">Prezime</label> 
+		<input type="text" class="form-control" id="prezime" placeholder="Prezime" name="prezime" required>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputEmail1">Korisnicko ime</label>
+		<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" name="korisnickoIme" required>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputPassword1">Lozinka</label> 
+		<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Lozinka" name="lozinka" required>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputEmail1">Datum rodjenja</label>
+		<input type="email" class="form-control" id="exampleInputDate" aria-describedby="emailHelp" placeholder="dan-mesec-godina" name="datumRodjenja" required>
+	</div>
+	<div class="form-group">
+		<label for="exampleInputPassword1">Pol</label>
+		<input type="radio" name="pol" value="ZENSKI" checked="checked"> zenski
+		<input type="radio" name="pol" value="MUSKI"> muski
+	</div>
+	<div class="form-group" id = "uloga">	
+		<label for="exampleInputPassword1">Uloga</label>
+		<input type="radio" id = "radiok" name="uloga" value="KUPAC" checked="checked"> kupac
+	</div>
+	<div class="form-group">
+		 <input id = "kupac" type="button" value="Dodaj" onclick="registruj()" class="btn btn-primary">
+	 </div>	
+</form>
+	
+</body>
+</html>

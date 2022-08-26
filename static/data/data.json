@@ -1,0 +1,30 @@
+{
+  "korisnici": [
+    {
+      "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
+      "uloga": "KUPAC",
+      "tip": "BRONZANI",
+      "ime": "a",
+      "korisnickoIme": "a",
+      "lozinka": "aa",
+      "pol": "ZENSKI",
+      "datumRodjenja": "11-12-2002",
+      "sakupljeniBodovi": 0
+    }
+  ],
+  "sportskiObjekti": [
+    {
+      "id": "Test",
+      "naziv": "Test",
+      "tipObjekta": "TERETANA",
+      "sadrzaj": "test",
+      "status": "AKTIVAN",
+      "lokacija": {
+        "adresa": "Test"
+      },
+      "prosecnaOcena": 1.0,
+      "radnoVreme": "Test",
+      "logo": "/images/test"
+    }
+  ]
+}
