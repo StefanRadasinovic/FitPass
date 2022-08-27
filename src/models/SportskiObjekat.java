@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Comparator;
 
 public class SportskiObjekat {
 	
@@ -68,4 +69,39 @@ public class SportskiObjekat {
 		this.logo = logo;
 	}
 	
+	public static Comparator<SportskiObjekat> NazivComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return a.getNaziv().compareTo(b.getNaziv());
+		}
+	};
+	
+	public static Comparator<SportskiObjekat> ObrnutiNazivComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return b.getNaziv().compareTo(a.getNaziv());
+		}
+	};
+	
+	public static Comparator<SportskiObjekat> LokacijaComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return a.getLokacija().getAdresa().compareTo(b.getLokacija().getAdresa());
+		}
+	};
+	
+	public static Comparator<SportskiObjekat> ObrnutiLokacijaComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return b.getLokacija().getAdresa().compareTo(a.getLokacija().getAdresa());
+		}
+	};
+	
+	public static Comparator<SportskiObjekat> ProsecnaOcenaComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return Float.compare(a.getProsecnaOcena(), b.getProsecnaOcena());
+		}
+	};
+	
+	public static Comparator<SportskiObjekat> ObrnutiProsecnaOcenaComparator = new Comparator<SportskiObjekat>() {
+		public int compare(SportskiObjekat a, SportskiObjekat b) {
+			return Float.compare(b.getProsecnaOcena(), a.getProsecnaOcena());
+		}
+	};
 }

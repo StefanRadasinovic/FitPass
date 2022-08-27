@@ -25,6 +25,19 @@
       "prosecnaOcena": 1.0,
       "radnoVreme": "Test",
       "logo": "/images/test"
+    },
+    {
+      "id": "Test2",
+      "naziv": "Test2",
+      "tipObjekta": "BAZEN",
+      "sadrzaj": "test2",
+      "status": "NEAKTIVAN",
+      "lokacija": {
+        "adresa": "Test2"
+      },
+      "prosecnaOcena": 3.0,
+      "radnoVreme": "Test2",
+      "logo": "/images/test"
     }
   ]
 }

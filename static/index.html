@@ -34,6 +34,73 @@
     <main>
     	<h1 >Dostupni objekti</h1>
     	
+    	<div style="margin-bottom: 40px; margin-left: 20px;">
+		   <input id="pretraga" type="text" class="form-control" aria-label="Pretraga" style="width: 70%;">
+			   
+			   <label>Pretraga po</label>
+	      <select id="pretragaPo">
+	      	<option value="naziv">Naziv</option>
+	      	<option value="tip">Tip</option>
+	      	<option value="lokacija">Lokacija</option>
+	      	<option value="ocena">Ocena</option>
+	      </select>
+	   
+		 </div>
+    	
+    	<div style="margin-left: 20px; margin-bottom: 20px;">
+		 	
+		 	<div>
+				 <div>
+				 	<div style="margin-bottom: 30px;">
+			
+				 		
+				 		<div>
+				 			<input type="radio" name="tip" value="" checked />
+				 			<span>-</span>
+				 		</div>
+				 		<div>
+				 			<input type="radio" name="tip" value="TERETANA" />
+				 			<span>teretana</span>
+				 		</div>
+				 		<div>
+				 			<input type="radio" name="tip" value="BAZEN" />
+				 			<span>bazen</span>
+				 		</div>
+				 	</div>
+				 	
+				 	<div >
+				 		
+				 		<div>
+				 			<input id="otvoreni" type="checkbox" name="otvoreni" />
+				 			<span>Samo otvoreni objekti</span>
+				 		</div>
+				 	</div>
+				 </div>
+		 	</div>
+		 	
+		 	<div>
+		 		<h3 >Sortiranje</h3>
+		 		
+		 		<div>
+			 		<select id="sortiranjePo" >
+			 			<option value=""></option>
+			 			<option value="naziv">naziv</option>
+			 			<option value="lokacija">lokacija</option>
+			 			<option value="prosecna-ocena">prosecna ocena</option>
+			 		</select>
+		 		</div>
+		 		
+		 		<div>
+		 			<label>Rastuce <input id="sortRastuce" type="checkbox"  checked /></label>
+		 		</div>
+		 	</div>
+		 	
+		 </div>
+		 
+		 <div style="margin: 20px;">
+		 	<button class="btn btn-dark" onclick="pretraga()">Pretraga</button>
+		 </div>
+    	
     	
     	<table class="table">
     		<thead>
