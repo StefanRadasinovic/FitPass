@@ -10,10 +10,13 @@ import java.util.Set;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import models.Korisnik;
+import models.KorisnikUloga;
 import models.SportskiObjekat;
 import models.StatusObjekta;
 import models.TipObjekta;
 import services.SportskiObjektiService;
+import spark.Session;
 
 
 public class SportskiObjekatController {
@@ -132,6 +135,35 @@ public class SportskiObjekatController {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
 			String json = g.toJson(sportskiObjekti, List.class);
 			return json;
+		});
+		
+		get("/sportski-objekti/menadzer-objekat", (req, res) -> {			
+			Session session = req.session(true);
+			Korisnik ulogovaniKorisnik = session.attribute("user");
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			} else if (!ulogovaniKorisnik.getUloga().equals(KorisnikUloga.MENADZER)) {
+				res.status(403);
+				return "Niste ulogovani kao menadzer";
+			}
+			
+			res.type("application/json");
+			res.status(200);
+			
+			String objekatId = ulogovaniKorisnik.getObjekatKojimUpravlja();
+			
+			SportskiObjektiService service = new SportskiObjektiService();
+			SportskiObjekat sportskiObjekat = service.getObjekatPoId(objekatId);
+			if (sportskiObjekat == null) {
+				res.type("application/json");
+				res.status(404);
+				return "Objekat nije pronadjen";
+			} else {
+				Gson g = new GsonBuilder().setPrettyPrinting().create();
+				String json = g.toJson(sportskiObjekat, SportskiObjekat.class);
+				return json;
+			}
 		});
 		
 		get("/sportski-objekti/:id", (req, res) -> {

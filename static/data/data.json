@@ -2,14 +2,15 @@
   "korisnici": [
     {
       "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
-      "uloga": "KUPAC",
+      "uloga": "MENADZER",
       "tip": "BRONZANI",
       "ime": "a",
       "korisnickoIme": "a",
       "lozinka": "aa",
       "pol": "ZENSKI",
       "datumRodjenja": "11-12-2002",
-      "sakupljeniBodovi": 0
+      "sakupljeniBodovi": 0,
+      "objekatKojimUpravlja": "Test"
     }
   ],
   "sportskiObjekti": [

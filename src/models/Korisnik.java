@@ -12,7 +12,7 @@ public class Korisnik {
 	private String pol;
 	private String datumRodjenja;
 	private int sakupljeniBodovi;
-	private String obejekatKojimUpravlja;
+	private String objekatKojimUpravlja;
 	public String getId() {
 		return id;
 	}
@@ -73,11 +73,11 @@ public class Korisnik {
 	public void setSakupljeniBodovi(int sakupljeniBodovi) {
 		this.sakupljeniBodovi = sakupljeniBodovi;
 	}
-	public String getObejekatKojimUpravlja() {
-		return obejekatKojimUpravlja;
+	public String getObjekatKojimUpravlja() {
+		return objekatKojimUpravlja;
 	}
 	public void setObejekatKojimUpravlja(String obejekatKojimUpravlja) {
-		this.obejekatKojimUpravlja = obejekatKojimUpravlja;
+		this.objekatKojimUpravlja = obejekatKojimUpravlja;
 	}
 	
 }
