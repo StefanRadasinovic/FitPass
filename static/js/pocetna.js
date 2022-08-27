@@ -24,6 +24,7 @@ function getSportskiObjekti() {
 				red += "<td>" + s.radnoVreme + "</td>";
 				red += "<td>" + s.prosecnaOcena + "</td>";
 				red += "<td><img width=50 height=50 src='" + s.logo + "'</td>";
+				red += "<td><a href='/objekat_pregled.html?objekatId=" + s.id + "' class='btn btn-dark'>" + "Pregled" + "</a></td>";
 				red += "</tr>";
 				
                 elem.append(red);
