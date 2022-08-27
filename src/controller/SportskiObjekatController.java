@@ -133,6 +133,25 @@ public class SportskiObjekatController {
 			String json = g.toJson(sportskiObjekti, List.class);
 			return json;
 		});
+		
+		get("/sportski-objekti/:id", (req, res) -> {
+			res.type("application/json");
+			res.status(200);
+			
+			String objekatId = req.params("id");
+			
+			SportskiObjektiService service = new SportskiObjektiService();
+			SportskiObjekat sportskiObjekat = service.getObjekatPoId(objekatId);
+			if (sportskiObjekat == null) {
+				res.type("application/json");
+				res.status(404);
+				return "Objekat nije pronadjen";
+			} else {
+				Gson g = new GsonBuilder().setPrettyPrinting().create();
+				String json = g.toJson(sportskiObjekat, SportskiObjekat.class);
+				return json;
+			}
+		});
 				
 	}
 }
