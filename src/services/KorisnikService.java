@@ -23,7 +23,7 @@ public class KorisnikService {
 	    throw new Exception();
     }
 	
-	public DtoRegistracija registracijaKorisnika(DtoRegistracija dto) throws Exception {
+	public void registracijaKorisnika(DtoRegistracija dto) throws Exception {
 		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
 	    String korisnickoIme = dto.getKorisnickoIme();
 	    for (Korisnik korisnik : korisnici) {
@@ -47,8 +47,17 @@ public class KorisnikService {
 	    
         DataManager.data.getKorisnici().add(korisnik);
         DataManager.saveData();
-        
-	    return dto;
+    }
+	
+	public Korisnik getPoId(String korisnikId) throws Exception {
+		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
+		for (Korisnik korisnik : korisnici) {
+			if (korisnik.getId().equals(korisnikId)) {
+				return korisnik;
+			}
+		}
+		
+		return null;
     }
 	
 }

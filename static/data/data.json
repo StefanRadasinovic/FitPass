@@ -40,5 +40,21 @@
       "radnoVreme": "Test2",
       "logo": "/images/test"
     }
+  ],
+  "treninzi": [
+  {
+      "id": "1",
+      "tip": "GRUPNI",
+      "naziv": "Test",
+      "trajanje": 0,
+      "opis": "asde",
+      "datum": "2001-01-01T00:00",
+      "cena": 0,
+      "slika": "/test.jpg",
+      "otkazan": false,
+      "kupac": null,
+      "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
+      "sportskiObjekat": "Test"
+    }
   ]
 }

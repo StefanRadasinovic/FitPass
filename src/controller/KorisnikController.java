@@ -1,6 +1,5 @@
 package controller;
 
-import static spark.Spark.get;
 import static spark.Spark.post;
 
 
@@ -37,9 +36,9 @@ public class KorisnikController {
 					return "Popunite sva polja";
 				}
 				
-				DtoRegistracija novi = service.registracijaKorisnika(k);
+				service.registracijaKorisnika(k);
 				res.status(200);
-				return g.toJson(novi);
+				return "Uspesno";
 
 			} catch (Exception e) {
 				res.status(400);
