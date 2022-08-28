@@ -23,4 +23,9 @@ public class TreningService {
 		return treninzi;
 	}
 	
+	public void sacuvajNovi(Trening trening) {
+		DataManager.data.getTreninzi().add(trening);
+		DataManager.saveData();
+	}
+	
 }

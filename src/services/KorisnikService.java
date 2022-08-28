@@ -73,5 +73,29 @@ public class KorisnikService {
 		
 		return null;
     }
+
+	public List<Korisnik> sviKupci() {
+		List<Korisnik> pomocna = new ArrayList<Korisnik>();
+		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
+		for (Korisnik korisnik : korisnici) {
+			if (korisnik.getUloga().equals(KorisnikUloga.KUPAC)) {
+				pomocna.add(korisnik);
+			}
+		}
+		
+		return pomocna;
+	}
+	
+	public List<Korisnik> sviTreneri() {
+		List<Korisnik> pomocna = new ArrayList<Korisnik>();
+		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
+		for (Korisnik korisnik : korisnici) {
+			if (korisnik.getUloga().equals(KorisnikUloga.TRENER)) {
+				pomocna.add(korisnik);
+			}
+		}
+		
+		return pomocna;
+	}
 	
 }

@@ -1,9 +1,17 @@
 package controller;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.MultipartConfigElement;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -126,6 +134,71 @@ public class TreningController {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
 			String json = g.toJson(prikazLista, List.class);
 			return json;
+		});
+		
+		post("/treninzi/novi", (req, res) -> {
+			res.type("application/json");
+			
+			req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+			String naziv = req.queryParams("naziv");
+			String tip = req.queryParams("tip");
+			String opis = req.queryParams("opis");
+			String trajanje = req.queryParams("trajanje");
+			String datum = req.queryParams("datum");
+			int cena = Integer.parseInt(req.queryParams("cena"));
+			String kupac = req.queryParams("kupac");
+			String trener = req.queryParams("trener");
+			String sportskiObjekat = req.queryParams("objekatId");
+			
+			if (naziv.isEmpty() || tip.isEmpty() || opis.isEmpty() ||
+					trajanje.isEmpty() || trener.isEmpty() || sportskiObjekat.isEmpty() && datum.isEmpty()) {
+				res.status(400);
+				return "Neispravan unos";
+			}
+			
+			String slikaURL = "";
+		    try (InputStream is = req.raw().getPart("slika").getInputStream()) {
+		    	slikaURL = "/slike/" + String.valueOf(System.currentTimeMillis()) + ".jpg";
+		        File targetFile = new File(System.getProperty("user.dir") + "/static" + slikaURL);
+		        OutputStream outStream = new FileOutputStream(targetFile);
+
+		        byte[] buffer = new byte[8 * 1024];
+		        int bytesRead;
+		        while ((bytesRead = is.read(buffer)) != -1) {
+		            outStream.write(buffer, 0, bytesRead);
+		        }
+		        is.close();
+		        outStream.close();
+		    } catch (Exception e) {
+				res.status(500);
+				return "Greska";
+			}
+			
+		    try {
+				Trening noviTrening = new Trening();
+				noviTrening.setId(String.valueOf(UUID.randomUUID().toString()));
+				noviTrening.setNaziv(naziv);
+				noviTrening.setOpis(opis);
+				noviTrening.setTip(TreningTip.valueOf(tip));
+				noviTrening.setTrajanje(Integer.parseInt(trajanje));
+				noviTrening.setSlika(slikaURL);
+				noviTrening.setDatum(datum);
+				noviTrening.setCena(cena);
+				noviTrening.setTrener(trener);
+				noviTrening.setSportskiObjekat(sportskiObjekat);
+				noviTrening.setKupac(kupac);
+				
+				TreningService s = new TreningService();
+				s.sacuvajNovi(noviTrening);
+				
+				res.status(200);
+				return "Uspesno";
+		    } catch (Exception e) {
+		    	res.status(400);
+				return "Neispravni podaci";
+			}
+		
+
 		});
 	}
 	

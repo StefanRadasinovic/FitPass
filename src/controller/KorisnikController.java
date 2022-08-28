@@ -29,6 +29,24 @@ public class KorisnikController {
 			String json = g.toJson(menadzeri, List.class);
 			return json;
 		});
+		
+		get("/kupci", (req, res) -> {
+			KorisnikService service = new KorisnikService();
+			List<Korisnik> menadzeri = service.sviKupci();
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(menadzeri, List.class);
+			return json;
+		});
+		
+		get("/treneri", (req, res) -> {
+			KorisnikService service = new KorisnikService();
+			List<Korisnik> treneri = service.sviTreneri();
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(treneri, List.class);
+			return json;
+		});
 
 		post("/registracija", (req, res) -> {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
