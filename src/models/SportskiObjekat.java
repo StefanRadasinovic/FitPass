@@ -7,11 +7,11 @@ public class SportskiObjekat {
 	private String id;
 	private String naziv;
 	private TipObjekta tipObjekta;
-	private String sadrzaj;
+	private String sadrzaj = "";
 	private StatusObjekta status;
 	private Lokacija lokacija;
-	private float prosecnaOcena;
-	private String radnoVreme;
+	private float prosecnaOcena = 0;
+	private String radnoVreme = "";
 	private String logo;
 	
 	public String getId() {

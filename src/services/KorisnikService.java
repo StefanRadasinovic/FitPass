@@ -1,5 +1,6 @@
 package services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -10,6 +11,18 @@ import models.KorisnikUloga;
 import models.TipKorisnika;
 
 public class KorisnikService {
+	
+	public List<Korisnik> sviMenadzeriBezObjektaKojimUpravljaju() {
+		List<Korisnik> pomocna = new ArrayList<Korisnik>();
+		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
+		for (Korisnik korisnik : korisnici) {
+			if (korisnik.getUloga().equals(KorisnikUloga.MENADZER) && korisnik.getObjekatKojimUpravlja() == null) {
+				pomocna.add(korisnik);
+			}
+		}
+		
+		return pomocna;
+	}
 	
 	public Korisnik login(String korisnickoIme, String lozinka) throws Exception {
 		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
@@ -36,6 +49,7 @@ public class KorisnikService {
 	    korisnik.setId(UUID.randomUUID().toString());
 	    korisnik.setKorisnickoIme(korisnickoIme);
 	    korisnik.setIme(dto.getIme());
+	    korisnik.setPrezime(dto.getPrezime());
 	    korisnik.setLozinka(dto.getLozinka());
 	    korisnik.setDatumRodjenja(dto.getDatumRodjenja());
 	    korisnik.setUloga(KorisnikUloga.valueOf(dto.getUloga()));

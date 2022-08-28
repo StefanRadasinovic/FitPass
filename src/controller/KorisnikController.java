@@ -2,6 +2,10 @@ package controller;
 
 import static spark.Spark.post;
 
+import java.util.List;
+
+import static spark.Spark.get;
+
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,6 +20,15 @@ public class KorisnikController {
 	
 	
 	public static void listen() {
+		
+		get("/menadzeriBezObjekta", (req, res) -> {
+			KorisnikService service = new KorisnikService();
+			List<Korisnik> menadzeri = service.sviMenadzeriBezObjektaKojimUpravljaju();
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(menadzeri, List.class);
+			return json;
+		});
 
 		post("/registracija", (req, res) -> {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();

@@ -21,5 +21,10 @@ public class SportskiObjektiService {
 		
 		return null;
 	}
+	
+	public void sacuvajNovi(SportskiObjekat s) {
+		DataManager.data.getSportskiObjekti().add(s);
+		DataManager.saveData();
+	}
 
 }

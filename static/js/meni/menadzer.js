@@ -25,6 +25,9 @@ function ucitajMenadzerovObjekat() {
  			$("#lokacija").html(sportskiObjekat.lokacija.adresa);
  			$("#logo").attr("src", sportskiObjekat.logo);
  			$("#ocena").html(sportskiObjekat.prosecnaOcena);
+ 			
+ 			$("#nav").append('<li class="nav-item"><a class="nav-link" href="/novi_objekat?objekatId=' + sportskiObjekat.id + '">Novi objekat</a></li>')
+ 			
         }
     });
 }

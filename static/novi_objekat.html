@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Sportski objekat</title>
+        <script src="external/jquery.min.js"></script>
+	    <script src="js/novi_objekat.js"></script>
+	    
+	    <link rel="stylesheet" href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	
+	    <script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<h1 style="margin: 50px;">Novi objekat</h1>
+
+	<form id="forma" style=" width: 75%; margin-left: auto; margin-right: auto;">
+		<div class="form-group">		
+			<label for="naziv">Naziv</label> 
+			<input type="text" class="form-control" id="naziv" aria-describedby="emailHelp" name="naziv" required>
+		</div>
+		<div class="form-group">
+			<label for="tip">Tip</label> 
+			<select class="form-control" id="tip" name="tip">
+				<option value="BAZEN">Bazen</option>
+				<option value="TERETANA">Teretana</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="adresa">Adresa</label>
+			<input type="text" class="form-control" id="adresa" name="adresa" required>
+		</div>
+		<div class="form-group">
+			<label for="menadzer">Menadzer</label> 
+			<select type="text" class="form-control" id="menadzer" name="menadzer">
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="logo">Logo</label>
+			<input type="file" class="form-control" id="logo" accept="image/png, image/gif, image/jpeg" name="logo" required>
+		</div>
+		<div>
+			<button type="button" id="dugmePotvrda" class="btn btn-dark" onclick="sacuvaj()">Sacuvaj</button>
+		</div>
+	</form>
+</body>
+</html>
