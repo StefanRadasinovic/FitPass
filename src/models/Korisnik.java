@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Comparator;
 
 public class Korisnik {
 	private String id;
@@ -79,5 +80,53 @@ public class Korisnik {
 	public void setObejekatKojimUpravlja(String obejekatKojimUpravlja) {
 		this.objekatKojimUpravlja = obejekatKojimUpravlja;
 	}
+	
+	public static Comparator<Korisnik> ImeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return a.getIme().compareTo(b.getIme());
+		}
+	};
+	
+	public static Comparator<Korisnik> ObrnutiImeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return b.getIme().compareTo(a.getIme());
+		}
+	};
+	
+	public static Comparator<Korisnik> PrezimeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return a.getPrezime().compareTo(b.getPrezime());
+		}
+	};
+	
+	public static Comparator<Korisnik> ObrnutiPrezimeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return b.getPrezime().compareTo(a.getPrezime());
+		}
+	};
+	
+	public static Comparator<Korisnik> KorisnickoImeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return a.getKorisnickoIme().compareTo(b.getKorisnickoIme());
+		}
+	};
+	
+	public static Comparator<Korisnik> ObrnutiKorisnickoImeComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return b.getKorisnickoIme().compareTo(a.getKorisnickoIme());
+		}
+	};
+	
+	public static Comparator<Korisnik> BrojBodovaComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return Integer.compare(a.getSakupljeniBodovi(), b.getSakupljeniBodovi());
+		}
+	};
+	
+	public static Comparator<Korisnik> ObrnutiBrojBodovaComparator = new Comparator<Korisnik>() {
+		public int compare(Korisnik a, Korisnik b) {
+			return Integer.compare(b.getSakupljeniBodovi(), a.getSakupljeniBodovi());
+		}
+	};
 	
 }

@@ -73,6 +73,11 @@ public class KorisnikService {
 		
 		return null;
     }
+	
+	public List<Korisnik> svi() {
+		
+		return (List<Korisnik>) DataManager.data.getKorisnici();
+	}
 
 	public List<Korisnik> sviKupci() {
 		List<Korisnik> pomocna = new ArrayList<Korisnik>();

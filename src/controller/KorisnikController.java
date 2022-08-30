@@ -3,6 +3,7 @@ package controller;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static spark.Spark.get;
@@ -15,7 +16,13 @@ import dto.DtoLogin;
 import dto.DtoRegistracija;
 import dto.korisnik.KorisnikPregledDTO;
 import models.Korisnik;
+import models.KorisnikUloga;
+import models.SportskiObjekat;
+import models.StatusObjekta;
+import models.TipKorisnika;
+import models.TipObjekta;
 import services.KorisnikService;
+import services.SportskiObjektiService;
 import spark.Session;
 
 public class KorisnikController {
@@ -23,9 +30,116 @@ public class KorisnikController {
 	
 	public static void listen() {
 		
+		get("/korisnici/pretraga", (req, res) -> {
+			res.type("application/json");
+			res.status(200);
+			
+			String pretragaTekst = req.queryParams("pretragaTekst");
+			String pretragaPo = req.queryParams("pretragaPo");
+			String tip = req.queryParams("tip");
+			String uloga = req.queryParams("uloga");
+			boolean rastuceSortiranje = Boolean.parseBoolean(req.queryParams("rastuceSortiranje"));
+			String sortiranjePo = req.queryParams("sortiranjePo");
+						
+			KorisnikService service = new KorisnikService();
+			List<Korisnik> korisnici = service.svi();
+
+			if (!pretragaTekst.isEmpty() && !pretragaPo.isEmpty()) {
+				List<Korisnik> pomocna = new ArrayList<Korisnik>();
+				if (pretragaPo.equals("ime")) {
+					for (Korisnik k : korisnici) {
+						if (k.getIme().contains(pretragaTekst)) {
+							pomocna.add(k);
+						}
+					}
+					
+					korisnici = pomocna;
+				} else if (pretragaPo.equals("prezime")) {
+					for (Korisnik k : korisnici) {
+						if (k.getPrezime().contains(pretragaTekst)) {
+							pomocna.add(k);
+						}
+					}
+					
+					korisnici = pomocna;
+				} else if (pretragaPo.equals("korisnicko-ime")) {
+					for (Korisnik k : korisnici) {
+						if (k.getKorisnickoIme().contains(pretragaTekst)) {
+							pomocna.add(k);
+						}
+					}
+					
+					korisnici = pomocna;
+				}
+			}
+			
+			if (!tip.isEmpty()) {
+				List<Korisnik> pomocna = new ArrayList<Korisnik>();
+				for (Korisnik k : korisnici) {
+					if (k.getTip().equals(TipKorisnika.valueOf(tip))) {
+						pomocna.add(k);
+					}
+				}
+				
+				korisnici = pomocna;
+			}
+			
+			if (!uloga.isEmpty()) {
+				List<Korisnik> pomocna = new ArrayList<Korisnik>();
+				for (Korisnik k : korisnici) {
+					if (k.getUloga().equals(KorisnikUloga.valueOf(uloga))) {
+						pomocna.add(k);
+					}
+				}
+				
+				korisnici = pomocna;
+			}
+			
+			if (!sortiranjePo.isEmpty()) {
+				if (sortiranjePo.equals("ime")) {
+					if (rastuceSortiranje) {
+						korisnici.sort(Korisnik.ImeComparator);
+					} else {
+						korisnici.sort(Korisnik.ObrnutiImeComparator);
+					}
+				} else if (sortiranjePo.equals("prezime")) {
+					if (rastuceSortiranje) {
+						korisnici.sort(Korisnik.PrezimeComparator);
+					} else {
+						korisnici.sort(Korisnik.ObrnutiPrezimeComparator);
+					}
+				} else if (sortiranjePo.equals("korisnicko-ime")) {
+					if (rastuceSortiranje) {
+						korisnici.sort(Korisnik.KorisnickoImeComparator);
+					} else {
+						korisnici.sort(Korisnik.ObrnutiKorisnickoImeComparator);
+					}
+				} else if (sortiranjePo.equals("broj-bodova")) {
+					if (rastuceSortiranje) {
+						korisnici.sort(Korisnik.BrojBodovaComparator);
+					} else {
+						korisnici.sort(Korisnik.ObrnutiBrojBodovaComparator);
+					}
+				}
+			}
+			
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(korisnici, List.class);
+			return json;
+		});
+		
 		get("/menadzeriBezObjekta", (req, res) -> {
 			KorisnikService service = new KorisnikService();
 			List<Korisnik> menadzeri = service.sviMenadzeriBezObjektaKojimUpravljaju();
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(menadzeri, List.class);
+			return json;
+		});
+		
+		get("/korisnici/svi", (req, res) -> {
+			KorisnikService service = new KorisnikService();
+			List<Korisnik> menadzeri = service.svi();
 			res.status(200);
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
 			String json = g.toJson(menadzeri, List.class);
