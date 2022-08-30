@@ -1,6 +1,7 @@
 package controller;
 
 import static spark.Spark.post;
+import static spark.Spark.put;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import com.google.gson.GsonBuilder;
 
 import dto.DtoLogin;
 import dto.DtoRegistracija;
+import dto.korisnik.KorisnikPregledDTO;
 import models.Korisnik;
 import services.KorisnikService;
 import spark.Session;
@@ -47,7 +49,54 @@ public class KorisnikController {
 			String json = g.toJson(treneri, List.class);
 			return json;
 		});
+		
+		get("/korisnik/pregled", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovanikorisnik = ss.attribute("user");
+			
+			KorisnikPregledDTO dto = new KorisnikPregledDTO();
+			dto.setId(ulogovanikorisnik.getId());
+			dto.setIme(ulogovanikorisnik.getIme());
+			dto.setPrezime(ulogovanikorisnik.getPrezime());
+			dto.setDatumRodjenja(ulogovanikorisnik.getDatumRodjenja());
+			dto.setKorisnickoIme(ulogovanikorisnik.getKorisnickoIme());
+			dto.setPol(ulogovanikorisnik.getPol());
+			dto.setTip(ulogovanikorisnik.getTip().toString());
+			dto.setUloga(ulogovanikorisnik.getUloga().toString());
+			
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(dto, KorisnikPregledDTO.class);
+			return json;
+		});
+		
+		put("/korisnik/pregled", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovanikorisnik = ss.attribute("user");
+			
+			try {
+				Gson g = new GsonBuilder().setPrettyPrinting().create();
+				KorisnikPregledDTO dto = g.fromJson(req.body(), KorisnikPregledDTO.class);
+				if (dto.getIme().isEmpty() || dto.getPrezime().isEmpty() || dto.getDatumRodjenja().isEmpty()) {
+					res.status(400);
+					return "Neispravan unos";
+				}
+				
+				ulogovanikorisnik.setIme(dto.getIme());
+				ulogovanikorisnik.setPrezime(dto.getPrezime());
+				ulogovanikorisnik.setPol(dto.getPol());
+				ulogovanikorisnik.setDatumRodjenja(dto.getDatumRodjenja());
+				
+				KorisnikService service = new KorisnikService();
+				service.azuriraj(ulogovanikorisnik);
+				res.status(200);
+				return "Uspesno";
 
+			} catch (Exception e) {
+				res.status(400);
+				return e.getMessage();
+			}
+		});
+			
 		post("/registracija", (req, res) -> {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
 			KorisnikService service = new KorisnikService();

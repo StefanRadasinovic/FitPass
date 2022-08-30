@@ -98,4 +98,18 @@ public class KorisnikService {
 		return pomocna;
 	}
 	
+	public void azuriraj(Korisnik korisnik) throws Exception {
+		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
+	    for (Korisnik k : korisnici) {
+	    	if (korisnik.getId().equals(korisnik.getId())) {
+	    	    k.setIme(korisnik.getIme());
+	    	    k.setPrezime(korisnik.getPrezime());
+	    	    k.setDatumRodjenja(korisnik.getDatumRodjenja());
+	    	    k.setPol(korisnik.getPol());
+	    	}
+        }	    
+	    
+        DataManager.saveData();
+    }
+	
 }

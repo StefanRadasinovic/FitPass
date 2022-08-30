@@ -5,10 +5,11 @@
       "uloga": "KUPAC",
       "tip": "BRONZANI",
       "ime": "a",
+      "prezime": "uuu",
       "korisnickoIme": "a",
       "lozinka": "aa",
       "pol": "ZENSKI",
-      "datumRodjenja": "11-12-2002",
+      "datumRodjenja": "2022-08-15",
       "sakupljeniBodovi": 0,
       "objekatKojimUpravlja": "Test"
     },
@@ -16,11 +17,12 @@
       "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
       "uloga": "TRENER",
       "tip": "BRONZANI",
-      "ime": "b",
+      "ime": "a",
+      "prezime": "uuu",
       "korisnickoIme": "b",
       "lozinka": "bb",
       "pol": "ZENSKI",
-      "datumRodjenja": "11-12-2002",
+      "datumRodjenja": "2022-08-15",
       "sakupljeniBodovi": 0
     }
   ],
