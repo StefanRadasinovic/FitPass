@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Novi trening</title>
+    <script src="external/jquery.min.js"></script>
+    <script src="js/izmena_treninga.js"></script>
+       
+	<link rel="stylesheet" href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+	<script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+	
+</head>
+<body>
+
+	<h1 class="text-center">Izmena</h1>
+
+	<form id="trening" style=" width: 75%; margin-left: auto; margin-right: auto;">
+		<input id="objekatId" name="objekatId" type="hidden" />
+		<input id="treningId" name="treningId" type="hidden" />
+		<div class="form-group">		
+			<label for="naziv">Naziv</label> 
+			<input type="text" class="form-control" id="naziv" name="naziv" required>
+		</div>
+		<div class="form-group">
+			<label for="tip">Tip</label> 
+			<select class="form-control" id="tip" name="tip">
+				<option value="GRUPNI">Grupni</option>
+				<option value="INDIVIDUALNI">Individualni</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="opis">Opis</label>
+			<input type="text" class="form-control" id="opis" name="opis" required>
+		</div>
+		<div class="form-group">
+			<label for="trajanje">Trajanje</label>
+			<input type="text" class="form-control" id="trajanje" name="trajanje" required>
+		</div>
+		<div class="form-group">
+			<label for="trener">Trener</label> 
+			<select class="form-control" id="trener" name="trener">
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="kupac">Kupac</label> 
+			<select class="form-control" id="kupac" name="kupac">
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="datum">Datum</label>
+			<input type="datetime-local" class="form-control" id="datum" name="datum" required>
+		</div>
+		<div class="form-group">
+			<label for="cena">Cena</label>
+			<input type="number" class="form-control" id="cena" name="cena" required>
+		</div>
+		<div class="form-group">
+			<label for="slika">Slika</label>
+			<input type="file" class="form-control" id="slika" accept="image/png, image/gif, image/jpeg" name="slika" required>
+		</div>
+		<div>
+			<input type="button" id="dugmePotvrda" class="btn btn-dark" onclick="sacuvaj()" value="Sacuvaj">
+		</div>
+	</form>
+</body>
+</html>
