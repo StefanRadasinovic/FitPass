@@ -24,6 +24,17 @@ public class TreningService {
 		return treninzi;
 	}
 	
+	public List<Trening> getTrenziZaObjekat(String objekatId) {
+		List<Trening> treninzi = new ArrayList<Trening>();
+		for (Trening tr : sviTreninzi()) {
+			if (tr.getSportskiObjekat().equals(objekatId)) {
+				treninzi.add(tr);
+			}
+		}
+		
+		return treninzi;
+	}
+	
 	public Trening getPoId(String treningId) {
 		for (Trening tr : sviTreninzi()) {
 			if (tr.getId().equals(treningId)) {

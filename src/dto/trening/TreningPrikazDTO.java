@@ -13,7 +13,7 @@ public class TreningPrikazDTO {
 	private String kupac;
 	private String slikaURL;
 	private String datum;
-	
+	private String status;
 	
 	public String getId() {
 		return id;
@@ -81,5 +81,12 @@ public class TreningPrikazDTO {
 	public void setDatum(String datum) {
 		this.datum = datum;
 	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	
 }

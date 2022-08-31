@@ -28,6 +28,42 @@ function ucitajMenadzerovObjekat() {
  			
  			$("#nav").append('<li class="nav-item"><a class="nav-link" href="/novi_objekat?objekatId=' + sportskiObjekat.id + '">Novi objekat</a></li>')
  			
+ 			ucitajTreningeZaObjekat(sportskiObjekat.id);
         }
     });
+}
+
+function ucitajTreningeZaObjekat(objekatId) {
+	$.ajax({
+	    url: "/treninzi/objekat/" + objekatId,
+	    type: "GET",
+	    contentType: "application/json",
+	    dataType: "json",
+	    error: function(error) {
+			alert("Treninzi nisu ucitani")
+		},
+	    success: function(data) {
+			treninzi = data;
+			let tableBody = $("#treninzi");
+	        tableBody.html("");
+	        for (let t of treninzi) {
+	            let red = "<tr>";
+				red += "<td>" + t.naziv + "</td>";
+				red += "<td>" + t.objekat + "</td>";
+				red += "<td>" + t.status + "</td>";
+				red += "<td>" + t.tip + "</td>";
+				red += "<td>" + t.trajanje + "</td>";
+				red += "<td>" + t.opis + "</td>";
+				red += "<td>" + t.cena + "</td>";
+				red += "<td>" + t.datum + "</td>";
+				red += "<td>" + t.trener + "</td>";	
+				red += "<td>" + t.kupac + "</td>";						
+				red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";			
+				red += "<td><a class='btn btn-dark' href='/izmena_treninga.html?treningId=" + t.id + "'>Izmena</td>";				
+				tableBody.append(red);
+			
+	    }
+	}
+	});
+	
 }

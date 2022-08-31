@@ -31,6 +31,53 @@ public class TreningController {
 	
 	public static void listen() {
 		
+		get("treninzi/objekat/:id", (req, res) -> {
+			res.type("application/json");
+			res.status(200);
+			
+			String objekatId = req.params("id");
+			
+			TreningService service = new TreningService();
+			List<Trening> treninzi = service.getTrenziZaObjekat(objekatId);
+			
+			List<TreningPrikazDTO> prikazLista = new ArrayList<TreningPrikazDTO>();
+			for (Trening t : treninzi) {
+				TreningPrikazDTO dto = new TreningPrikazDTO();
+				dto.setId(t.getId());
+				dto.setNaziv(t.getNaziv());
+				dto.setCena(t.getCena());
+				dto.setOpis(t.getOpis());
+				dto.setSlikaURL(t.getSlika());
+				dto.setTip(t.getTip().toString());
+				dto.setTrajanje(t.getTrajanje());
+				dto.setDatum(t.getDatum());
+				dto.setStatus(t.isOtkazan() ? "Otkazan" : "Aktivan");
+				
+				KorisnikService ks = new KorisnikService();
+				Korisnik trener = ks.getPoId(t.getTrener());
+				if (trener != null ) {
+					dto.setTrener(trener.getIme() + " " + trener.getPrezime());
+				}
+				
+				Korisnik kupac = ks.getPoId(t.getKupac());
+				if (kupac != null) {
+					dto.setKupac(kupac.getIme() + " " + kupac.getPrezime());
+				}
+				
+				SportskiObjektiService sos = new SportskiObjektiService();
+				SportskiObjekat so = sos.getObjekatPoId(t.getSportskiObjekat());
+				if (so != null) {
+					dto.setObjekat(so.getNaziv());
+				}
+				
+				prikazLista.add(dto);
+			}
+			
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(prikazLista, List.class);
+			return json;
+		});
+		
 		get("treninzi/trener/grupni", (req, res) -> {
 			res.type("application/json");
 			res.status(200);
