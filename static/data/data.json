@@ -24,6 +24,18 @@
       "pol": "ZENSKI",
       "datumRodjenja": "2022-08-15",
       "sakupljeniBodovi": 0
+    },
+    {
+      "id": "c89fa961-027f-42a0-94e9-129305450151",
+      "uloga": "MENADZER",
+      "tip": "BRONZANI",
+      "ime": "marko",
+      "prezime": "markovic",
+      "korisnickoIme": "mm",
+      "lozinka": "a",
+      "pol": "ZENSKI",
+      "datumRodjenja": "2022-09-20",
+      "sakupljeniBodovi": 0
     }
   ],
   "sportskiObjekti": [
