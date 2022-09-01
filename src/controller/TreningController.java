@@ -18,11 +18,14 @@ import javax.servlet.MultipartConfigElement;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dto.trening.IstorijaDTO;
 import dto.trening.PrijavaNaTreningDTO;
+import dto.trening.ProsirenaIstorijaTrening;
 import dto.trening.TreningPrikazDTO;
 import models.IstorijaTreninga;
 import models.Korisnik;
 import models.SportskiObjekat;
+import models.TipObjekta;
 import models.Trening;
 import models.TreningTip;
 import services.KorisnikService;
@@ -291,6 +294,213 @@ public class TreningController {
 			res.status(200);
 			return "Uspesno";
 
+		});
+		
+		get("trening/istorija", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovaniKorisnik = ss.attribute("user");
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			}
+			
+			TreningService service = new TreningService();
+			List<IstorijaTreninga> istorija = service.getIstorijaPoKupacId(ulogovaniKorisnik.getId());
+			List<IstorijaTreninga> filtrirana = new ArrayList<IstorijaTreninga>();
+			for (IstorijaTreninga it : istorija) {
+				if (LocalDateTime.parse(it.getDatumIVremePrijave()).compareTo(LocalDateTime.now().minusMonths(1)) >= 0) {
+					filtrirana.add(it);
+				}
+			}
+			
+			List<IstorijaDTO> dtos = new ArrayList<IstorijaDTO>();
+			for (IstorijaTreninga ti : filtrirana) {
+				IstorijaDTO dto = new IstorijaDTO();
+				dto.setId(ti.getId());
+				dto.setDatum(ti.getDatumIVremePrijave());
+				TreningService tService = new TreningService();
+				Trening trening = tService.getPoId(ti.getTrening());
+				dto.setTrening(trening.getNaziv());
+				SportskiObjektiService sService = new SportskiObjektiService();
+				SportskiObjekat so = sService.getObjekatPoId(trening.getSportskiObjekat());
+				dto.setSportskiObjekat(so.getNaziv());
+				
+				dtos.add(dto);
+			}
+			
+			res.type("application/json");
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(dtos, List.class);
+			return json;
+		});
+		
+		get("trening/istorija-pretraga", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovaniKorisnik = ss.attribute("user");
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			}
+			
+			String pretragaTekst = req.queryParams("pretragaTekst");
+			String cenaOd = req.queryParams("cenaOd");
+			String cenaDo = req.queryParams("cenaDo");
+			String datumOd = req.queryParams("datumOd");
+			String datumDo = req.queryParams("datumDo");
+			boolean bezDoplate = Boolean.parseBoolean(req.queryParams("bezDoplate"));
+			String tip = req.queryParams("tipTreninga");
+			boolean rastuceSortiranje = Boolean.parseBoolean(req.queryParams("rastuceSortiranje"));
+			String sortiranjePo = req.queryParams("sortiranjePo");
+			
+			TreningService service = new TreningService();
+			List<IstorijaTreninga> istorija = service.getIstorijaPoKupacId(ulogovaniKorisnik.getId());
+			List<IstorijaTreninga> filtrirana = new ArrayList<IstorijaTreninga>();
+			for (IstorijaTreninga it : istorija) {
+				if (LocalDateTime.parse(it.getDatumIVremePrijave()).compareTo(LocalDateTime.now().minusMonths(1)) >= 0) {
+					filtrirana.add(it);
+				}
+			}
+			
+			List<ProsirenaIstorijaTrening> prosireni = new ArrayList<ProsirenaIstorijaTrening>();
+			for (IstorijaTreninga ti : filtrirana) {
+				ProsirenaIstorijaTrening prosireniObjekat = new ProsirenaIstorijaTrening();
+				prosireniObjekat.setId(ti.getId());
+				prosireniObjekat.setDatum(ti.getDatumIVremePrijave());
+				TreningService tService = new TreningService();
+				Trening trening = tService.getPoId(ti.getTrening());
+				prosireniObjekat.setTrening(trening);
+				SportskiObjektiService sService = new SportskiObjektiService();
+				SportskiObjekat so = sService.getObjekatPoId(trening.getSportskiObjekat());
+				prosireniObjekat.setSportskiObjekat(so);
+				
+				prosireni.add(prosireniObjekat);
+			}
+			
+			List<ProsirenaIstorijaTrening> treninziIstorija = prosireni;
+			
+			if (!pretragaTekst.isEmpty()) {
+				List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+				for (ProsirenaIstorijaTrening it : treninziIstorija) {
+					if (it.getSportskiObjekat().getNaziv().contains(pretragaTekst.toLowerCase())) {
+						pomocna.add(it);
+					}
+				}
+				
+				treninziIstorija = pomocna;
+			}
+			
+			if (!cenaOd.isEmpty()) {
+				List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+				try {
+					int cena = Integer.parseInt(cenaOd);
+					for (ProsirenaIstorijaTrening it : treninziIstorija) {
+						if (it.getTrening().getCena() >= cena) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziIstorija = pomocna;
+				} catch (Exception e) {
+				}
+				
+			}
+			
+			if (!cenaDo.isEmpty()) {
+				List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+				try {
+					int cena = Integer.parseInt(cenaDo);
+					for (ProsirenaIstorijaTrening it : treninziIstorija) {
+						if (it.getTrening().getCena() <= cena) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziIstorija = pomocna;
+				} catch (Exception e) {
+				}
+				
+			}
+			
+			if (bezDoplate) {
+				List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+				for (ProsirenaIstorijaTrening it : treninziIstorija) {
+					if (it.getTrening().getCena() == 0) {
+						pomocna.add(it);
+					}
+				}
+				
+				treninziIstorija = pomocna;
+			}
+			
+			if (!datumOd.isEmpty()) {
+				try {
+					LocalDateTime datumOdDate = LocalDateTime.parse(datumOd);
+					List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+					for (ProsirenaIstorijaTrening it : treninziIstorija) {
+						if (LocalDateTime.parse(it.getTrening().getDatum()).compareTo(datumOdDate) >= 0) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziIstorija = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			if (!datumDo.isEmpty()) {
+				try {
+					LocalDateTime datumDoDate = LocalDateTime.parse(datumDo);
+					List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+					for (ProsirenaIstorijaTrening it : treninziIstorija) {
+						if (LocalDateTime.parse(it.getTrening().getDatum()).compareTo(datumDoDate) <= 0) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziIstorija = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			if (!tip.isEmpty()) {
+				try {
+					TipObjekta tipObjekta = TipObjekta.valueOf(tip); 
+					List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
+					for (ProsirenaIstorijaTrening it : treninziIstorija) {
+						if (it.getSportskiObjekat().getTipObjekta().equals(tipObjekta)) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziIstorija = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			
+			if (!sortiranjePo.isEmpty()) {
+				if (sortiranjePo.equals("nazivSportskogObjekta")) {
+					if (rastuceSortiranje) {
+						treninziIstorija.sort(ProsirenaIstorijaTrening.NazivSportskogObjekaComparator);
+					} else {
+						treninziIstorija.sort(ProsirenaIstorijaTrening.NazivSportskogObjekaComparator);
+					}
+				} else if (sortiranjePo.equals("tipTreninga")) {
+					if (rastuceSortiranje) {
+						treninziIstorija.sort(SportskiObjekat.LokacijaComparator);
+					} else {
+						treninziIstorija.sort(SportskiObjekat.ObrnutiLokacijaComparator);
+					}
+				}
+			}
+			
+			
+			res.type("application/json");
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(treninziIstorija, List.class);
+			return json;
 		});
 		
 		post("/trening/prijava", (req, res) -> {

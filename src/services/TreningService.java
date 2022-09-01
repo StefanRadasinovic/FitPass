@@ -86,4 +86,15 @@ public class TreningService {
 		
 	}
 	
+	public List<IstorijaTreninga> getIstorijaPoKupacId(String kupacId) {
+		List<IstorijaTreninga> pomocna = new ArrayList<IstorijaTreninga>();
+		for (IstorijaTreninga it : DataManager.data.getIstorija()) {
+			if (it.getKupac().equals(kupacId)) {
+				pomocna.add(it);
+			}
+		}
+		
+		return pomocna;
+	}
+	
 }

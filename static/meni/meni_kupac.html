@@ -28,12 +28,22 @@
     	<div style="margin-bottom: 40px; margin-left: 20px;">
 	    <input id="pretraga" type="text" class="form-control" aria-label="Pretraga" style="width: 70%;">
 			   
-	    <label>Pretraga po</label>
-	      <select id="pretragaPo">
-	      	<option value="sportskiObjekat">Sportski objekat</option>
-	      	<option value="cena">Cena</option>
-	      	<option value="bezDoplate">Bez doplated</option>
-	      </select>
+	    <label>Pretraga po sportskom objektu</label>
+	      
+	      <div>
+	      	<label>Cena od</label>
+		    <input type="number" id="cenaOd" />
+	      </div>
+	      
+	      <div>
+	      	<label>Cena do</label>
+		    <input type="number" id="cenaDo" />
+	      </div>
+	      
+	      <div>
+	      	<label>Bez doplate</label>
+		    <input type="checkbox" id="bezDoplate" />
+	      </div>
 	      
 	      <div>
 	      	<label>Datum od</label>
@@ -82,6 +92,19 @@
 		 </div>
     	
 	    <h1>Treninzi</h1>
+	    
+	    <table id="istorija-tabela" class="w-75 ml-auto mr-auto">
+    		<thead>
+    			<tr>
+                    <th>Objekat</th>
+                    <th>Datum</th>
+                    <th>Trening</th>
+                </tr>
+    		</thead>
+    		<tbody id="istorija-treninga">
+    			
+    		</tbody>
+    	</table>
     	
     </main>
 </body>
