@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -17,7 +18,9 @@ import javax.servlet.MultipartConfigElement;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dto.trening.PrijavaNaTreningDTO;
 import dto.trening.TreningPrikazDTO;
+import models.IstorijaTreninga;
 import models.Korisnik;
 import models.SportskiObjekat;
 import models.Trening;
@@ -288,6 +291,37 @@ public class TreningController {
 			res.status(200);
 			return "Uspesno";
 
+		});
+		
+		post("/trening/prijava", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovaniKorisnik = ss.attribute("user");
+			
+			TreningService service = new TreningService();
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			PrijavaNaTreningDTO dto = g.fromJson(req.body(), PrijavaNaTreningDTO.class);
+			IstorijaTreninga ti = service.getIstorijaPoKorisnikITrening(ulogovaniKorisnik.getId(), dto.getTrening());
+			if (ti != null) {
+				res.status(400);
+				return "Prijava postoji";
+			}
+			
+			//clanarina
+			
+			try {
+				IstorijaTreninga it = new IstorijaTreninga();
+				it.setId(UUID.randomUUID().toString());
+				it.setDatumIVremePrijave(LocalDateTime.now().toString());
+				it.setKupac(ulogovaniKorisnik.getId());
+				it.setTrening(dto.getTrening());
+				
+				service.dodajNoviZapisUIstoriju(it);
+				res.status(200);
+				return "Uspesno";
+			} catch (Exception e) {
+				res.status(400);
+				return "Neispravni podaci";
+			}
 		});
 		
 		post("/treninzi/novi", (req, res) -> {

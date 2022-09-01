@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import models.IstorijaTreninga;
 import models.Korisnik;
 import models.SportskiObjekat;
+import models.Trening;
 
 
 public class DataManager {
@@ -50,14 +52,21 @@ public class DataManager {
 		} catch (FileNotFoundException e) {
 			data.setKorisnici(new ArrayList<Korisnik>());
 			data.setSportskiObjekti(new ArrayList<SportskiObjekat>());
+			data.setTreninzi(new ArrayList<Trening>());
+			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			System.out.println("Fajl nije pronadjen");
 		} catch (IOException e) {
+			data.setKorisnici(new ArrayList<Korisnik>());
 			data.setSportskiObjekti(new ArrayList<SportskiObjekat>());
+			data.setTreninzi(new ArrayList<Trening>());
+			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			System.out.println("Neuspesno ucitavanje podataka");
 		} catch (Exception e) {
 			e.printStackTrace();
 			data.setKorisnici(new ArrayList<Korisnik>());
 			data.setSportskiObjekti(new ArrayList<SportskiObjekat>());
+			data.setTreninzi(new ArrayList<Trening>());
+			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			System.out.println("Greska pri ucitavanju");
 		}
 

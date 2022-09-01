@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import models.IstorijaTreninga;
 import models.Korisnik;
 import models.SportskiObjekat;
 import models.Trening;
@@ -13,6 +14,7 @@ public class Data {
 	private List<Korisnik> korisnici = new ArrayList<Korisnik>();
 	private List<SportskiObjekat> sportskiObjekti = new ArrayList<SportskiObjekat>();
 	private List<Trening> treninzi = new ArrayList<Trening>();
+	private List<IstorijaTreninga> istorija = new ArrayList<IstorijaTreninga>();
 
 	public Collection<Korisnik> getKorisnici() {
 		return korisnici;
@@ -36,6 +38,15 @@ public class Data {
 
 	public void setTreninzi(List<Trening> treninzi) {
 		this.treninzi = treninzi;
-	}		
+	}
+
+	public List<IstorijaTreninga> getIstorija() {
+		return istorija;
+	}
+
+	public void setIstorija(List<IstorijaTreninga> istorija) {
+		this.istorija = istorija;
+	}
+	
 
 }
