@@ -89,7 +89,7 @@
       "slika": "/test.jpg",
       "datum": "2022-11-11T00:00",
       "cena": 0,
-      "otkazan": false,
+      "otkazan": true,
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
       "sportskiObjekat": "Test"
     },
@@ -107,5 +107,6 @@
       "sportskiObjekat": "Test",
       "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8"
     }
-  ]
+  ],
+  "istorija": []
 }

@@ -18,6 +18,7 @@ import javax.servlet.MultipartConfigElement;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import dto.korisnik.KorisnikPregledDTO;
 import dto.trening.IstorijaDTO;
 import dto.trening.PrijavaNaTreningDTO;
 import dto.trening.ProsirenaIstorijaTrening;
@@ -777,6 +778,65 @@ public class TreningController {
 			}
 		
 
+		});
+		
+		put("trening/otkazivanje/:id", (req, res) -> {
+			String id = req.params("id");
+			TreningService service = new TreningService();
+			Trening trening = service.getPoId(id);
+			
+			if (trening.isOtkazan()) {
+				res.status(400);
+				return "Vec je otkazan";
+			}
+			
+			if (LocalDateTime.parse(trening.getDatum()).compareTo(LocalDateTime.now().plusDays(2)) <= 0) {
+				res.status(400);
+				return "Samo treninzi koji su za vise od 2 dana";
+			}
+			
+			trening.setOtkazan(true);
+			service.azuriraj(trening);
+			
+			res.status(200);
+			return "Uspesno sacuvano";
+		});
+		
+		get("korisnici/objekat/:id", (req, res) -> {
+			String objekatId = req.params("id");
+			
+			TreningService service = new TreningService();
+			KorisnikService kService = new KorisnikService();
+			List<IstorijaTreninga> istorija = service.getIstorijaPoObjekatId(objekatId);
+			List<Korisnik> korisnici = new ArrayList<Korisnik>();
+			List<String> vecDodati = new ArrayList<String>();
+			for (IstorijaTreninga it : istorija) {
+				if (!vecDodati.contains(it.getKupac())) {
+					korisnici.add(kService.getPoId(it.getKupac()));
+					vecDodati.add(it.getKupac());
+				}
+			}
+			
+			List<KorisnikPregledDTO> dtos = new ArrayList<KorisnikPregledDTO>();
+			for (Korisnik k : korisnici) {
+				KorisnikPregledDTO dto = new KorisnikPregledDTO();
+				dto.setId(k.getId());
+				dto.setIme(k.getIme());
+				dto.setPrezime(k.getPrezime());
+				dto.setDatumRodjenja(k.getDatumRodjenja());
+				dto.setKorisnickoIme(k.getKorisnickoIme());
+				dto.setPol(k.getPol());
+				dto.setTip(k.getTip().toString());
+				dto.setUloga(k.getUloga().toString());
+				
+				dtos.add(dto);
+			}
+			
+			res.type("application/json");
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(dtos, List.class);
+			return json;
 		});
 	}
 	

@@ -62,6 +62,7 @@ public class TreningService {
 				tr.setTrener(tr.getTrener());
 			}
 		}
+		DataManager.saveData();
 	}
 	
 	public void sacuvajNovi(Trening trening) {
@@ -90,6 +91,17 @@ public class TreningService {
 		List<IstorijaTreninga> pomocna = new ArrayList<IstorijaTreninga>();
 		for (IstorijaTreninga it : DataManager.data.getIstorija()) {
 			if (it.getKupac().equals(kupacId)) {
+				pomocna.add(it);
+			}
+		}
+		
+		return pomocna;
+	}
+	
+	public List<IstorijaTreninga> getIstorijaPoObjekatId(String objekatId) {
+		List<IstorijaTreninga> pomocna = new ArrayList<IstorijaTreninga>();
+		for (IstorijaTreninga it : DataManager.data.getIstorija()) {
+			if (it.getSportskiObjekat().equals(objekatId)) {
 				pomocna.add(it);
 			}
 		}

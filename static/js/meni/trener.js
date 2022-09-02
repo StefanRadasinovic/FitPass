@@ -63,7 +63,7 @@ function ucitajGrupneTreninge() {
 							red += "<td>/</td>";
 						}
 						red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-						red += "<td><a href='' class='btn btn-danger'>Otkazivanje</a></td>";				
+						red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
 						tableBody.append(red);
 			        }
 					
@@ -126,7 +126,7 @@ function pretraga() {
 						red += "<td>/</td>";
 					}
 					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-					red += "<td><a href='' class='btn btn-danger'>Otkazivanje</a></td>";				
+					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
 					tableBodyIndividualni.append(red);				
 				} else {
 					let red = "<tr>";
@@ -144,11 +144,26 @@ function pretraga() {
 						red += "<td>/</td>";
 					}
 					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-					red += "<td><a href='' class='btn btn-danger'>Otkazivanje</a></td>";				
+					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
 					tableBodyGrupni.append(red);
 				}
 	
 	        }
         }
+	});
+}
+
+function otkazi(treningId) {
+	$.ajax({
+	    url: "/trening/otkazivanje/" + treningId,
+	    type: "PUT",
+	    dataType: "json",
+	    error: function(error) {
+			alert(error.responseText)
+		},
+	    success: function(data) {
+			alert("Sacuvano");
+			window.location.reload();
+	    }
 	});
 }
