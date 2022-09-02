@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-dark dark navbar-expand">
+    <nav class="navbar navbar-dark bg-dark navbar-expand mb-2">
 	  <ul class="navbar-nav">
 	  
 	      <li class="nav-item">
@@ -22,6 +22,72 @@
       
       </ul>
 	</nav>
+	
+		<div style="margin-bottom: 40px; margin-left: 20px;">
+	    <input id="pretraga" type="text" class="form-control" aria-label="Pretraga" style="width: 70%;">
+			   
+	    <label>Pretraga po sportskom objektu</label>
+	      
+	      <div>
+	      	<label>Cena od</label>
+		    <input type="number" id="cenaOd" />
+	      </div>
+	      
+	      <div>
+	      	<label>Cena do</label>
+		    <input type="number" id="cenaDo" />
+	      </div>
+	      
+	      <div>
+	      	<label>Bez doplate</label>
+		    <input type="checkbox" id="bezDoplate" />
+	      </div>
+	      
+	      <div>
+	      	<label>Datum od</label>
+		    <input type="datetime-local" id="datumOd" />
+	      </div>
+	      
+	      <div>
+		    <label>Datum od</label> 
+			<input type="datetime-local" id="datumDo" />	   
+	      </div>
+		 </div>
+    	
+    	<div style="margin-left: 20px; margin-bottom: 20px;">
+		 	
+		 	<div>
+				 <div>
+				 	<label>Tip</label>
+				 	<select id="tip">
+				 		<option value="">-</option>
+				 		<option value="BAZEN">bazen</option>
+				 		<option value="TERETANA">teretana</option>
+				 	</select>
+				 </div>
+		 	</div>
+		 	
+		 	<div>
+		 		<h3 >Sortiranje</h3>
+		 		
+		 		<div>
+			 		<select id="sortiranjePo" >
+			 			<option value=""></option>
+			 			<option value="nazivSportskogObjekta">Naziv sportskog objekta</option>
+			 			<option value="tipTreninga">Tip treninga</option>
+			 		</select>
+		 		</div>
+		 		
+		 		<div>
+		 			<label>Rastuce <input id="sortRastuce" type="checkbox"  checked /></label>
+		 		</div>
+		 	</div>
+		 	
+		 </div>
+		 
+		 <div style="margin: 20px;">
+		 	<button class="btn btn-dark" onclick="pretraga()">Pretraga</button>
+		 </div>
 	
     <main>
     	<h1 class="text-center mt-3 mb-3" >Grupni treninzi</h1>

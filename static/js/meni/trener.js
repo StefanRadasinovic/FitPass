@@ -12,7 +12,6 @@ function ucitajGrupneTreninge() {
 			
 		},
 	    success: function(data) {
-			console.log(data)
 			treninzi = data;
 			let tableBody = $("#grupni-treninzi");
 	        tableBody.html("");
@@ -71,5 +70,85 @@ function ucitajGrupneTreninge() {
 			    }
 			});
 	    }
+	});
+}
+
+function pretraga() {
+	let pretragaTekst = $("#pretraga").val();
+	let cenaOd = $('#cenaOd').val();
+	let cenaDo = $('#cenaDo').val();
+	let datumOd = $('#datumOd').val();
+	let datumDo = $('#datumDo').val();
+	let tipTreninga = $('#tip').val();
+	let bezDoplate = $('#bezDoplate').is(':checked');
+	let rastuceSortiranje = $("#sortRastuce").is(":checked");
+	let sortiranjePo = $("#sortiranjePo").val();
+	
+	let queryParams = jQuery.param({
+		pretragaTekst,
+		cenaOd,
+		cenaDo,
+		datumOd,
+		datumDo,
+		tipTreninga,
+		bezDoplate,
+		rastuceSortiranje,
+		sortiranjePo
+	})
+
+	$.ajax({
+        url: "/trening/pretraga?" + queryParams,
+        type: "GET",
+        contentType: "application/json",
+        dataType: "json",
+        success: function(data) {
+            
+            let tableBodyIndividualni = $("#individualni-treninzi");
+            let tableBodyGrupni = $("#grupni-treninzi");
+	        tableBodyIndividualni.html("");
+	        tableBodyGrupni.html("");
+	        for (let treningProsireno of data) {
+				let t = treningProsireno.trening;
+				
+				if (t.tip === "INDIVIDUALNI") {
+					let red = "<tr>";
+					red += "<td>" + t.naziv + "</td>";
+					red += "<td>" + treningProsireno.sportskiObjekat.naziv + "</td>";
+					red += "<td>" + t.tip + "</td>";
+					red += "<td>" + t.trajanje + "</td>";
+					red += "<td>" + t.opis + "</td>";
+					red += "<td>" + t.cena + "</td>";
+					red += "<td>" + t.datum + "</td>";
+					red += "<td>" + treningProsireno.trener + "</td>";
+					if (t.kupac) {
+						red += "<td>" + t.kupac + "</td>";		
+					} else {
+						red += "<td>/</td>";
+					}
+					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
+					red += "<td><a href='' class='btn btn-danger'>Otkazivanje</a></td>";				
+					tableBodyIndividualni.append(red);				
+				} else {
+					let red = "<tr>";
+					red += "<td>" + t.naziv + "</td>";
+					red += "<td>" + treningProsireno.sportskiObjekat.naziv + "</td>";
+					red += "<td>" + t.tip + "</td>";
+					red += "<td>" + t.trajanje + "</td>";
+					red += "<td>" + t.opis + "</td>";
+					red += "<td>" + t.cena + "</td>";
+					red += "<td>" + t.datum + "</td>";
+					red += "<td>" + treningProsireno.trener + "</td>";
+					if (t.kupac) {
+						red += "<td>" + t.kupac + "</td>";		
+					} else {
+						red += "<td>/</td>";
+					}
+					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
+					red += "<td><a href='' class='btn btn-danger'>Otkazivanje</a></td>";				
+					tableBodyGrupni.append(red);
+				}
+	
+	        }
+        }
 	});
 }

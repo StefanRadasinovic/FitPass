@@ -22,6 +22,7 @@ import dto.trening.IstorijaDTO;
 import dto.trening.PrijavaNaTreningDTO;
 import dto.trening.ProsirenaIstorijaTrening;
 import dto.trening.TreningPrikazDTO;
+import dto.trening.TreningProsireno;
 import models.IstorijaTreninga;
 import models.Korisnik;
 import models.SportskiObjekat;
@@ -91,6 +92,11 @@ public class TreningController {
 			Session session = req.session(true);
 			Korisnik ulogovaniKorisnik = session.attribute("user");
 			
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			}
+			
 			TreningService service = new TreningService();
 			List<Trening> treninzi = service.getTrenziZaKorisnika(ulogovaniKorisnik.getId());
 			List<Trening> grupniTreninzi = new ArrayList<Trening>();
@@ -143,6 +149,11 @@ public class TreningController {
 			
 			Session session = req.session(true);
 			Korisnik ulogovaniKorisnik = session.attribute("user");
+			
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			}
 			
 			TreningService service = new TreningService();
 			List<Trening> treninzi = service.getTrenziZaKorisnika(ulogovaniKorisnik.getId());
@@ -335,6 +346,175 @@ public class TreningController {
 			return json;
 		});
 		
+		get("trening/pretraga", (req, res) -> {
+			Session ss = req.session(true);
+			Korisnik ulogovaniKorisnik = ss.attribute("user");
+			if (ulogovaniKorisnik == null) {
+				res.status(403);
+				return "Niste ulogovani";
+			}
+			
+			String pretragaTekst = req.queryParams("pretragaTekst");
+			String cenaOd = req.queryParams("cenaOd");
+			String cenaDo = req.queryParams("cenaDo");
+			String datumOd = req.queryParams("datumOd");
+			String datumDo = req.queryParams("datumDo");
+			boolean bezDoplate = Boolean.parseBoolean(req.queryParams("bezDoplate"));
+			String tip = req.queryParams("tipTreninga");
+			boolean rastuceSortiranje = Boolean.parseBoolean(req.queryParams("rastuceSortiranje"));
+			String sortiranjePo = req.queryParams("sortiranjePo");
+			
+			TreningService service = new TreningService();
+			List<Trening> treninzi = service.getTrenziZaKorisnika(ulogovaniKorisnik.getId());
+			List<Trening> filtrirana = new ArrayList<Trening>();
+			for (Trening t : treninzi) {
+				if (LocalDateTime.parse(t.getDatum()).compareTo(LocalDateTime.now()) >= 0) {
+					filtrirana.add(t);
+				}
+			}
+			
+			List<TreningProsireno> prosireni = new ArrayList<TreningProsireno>();
+			for (Trening t : filtrirana) {
+				TreningProsireno prosireniObjekat = new TreningProsireno();
+				prosireniObjekat.setTrening(t);
+				
+				KorisnikService kService = new KorisnikService();
+				Korisnik trener = kService.getPoId(t.getTrener()); 
+				prosireniObjekat.setTrener(trener.getIme() + " " + trener.getPrezime());
+				
+				SportskiObjektiService sService = new SportskiObjektiService();
+				SportskiObjekat so = sService.getObjekatPoId(t.getSportskiObjekat());
+				prosireniObjekat.setSportskiObjekat(so);
+				
+				prosireni.add(prosireniObjekat);
+			}
+			
+			List<TreningProsireno> treninziResponse = prosireni;
+			
+			if (!pretragaTekst.isEmpty()) {
+				List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+				for (TreningProsireno it : treninziResponse) {
+					if (it.getSportskiObjekat().getNaziv().contains(pretragaTekst)) {
+						pomocna.add(it);
+					}
+				}
+				
+				treninziResponse = pomocna;
+			}
+			
+			if (!cenaOd.isEmpty()) {
+				List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+				try {
+					int cena = Integer.parseInt(cenaOd);
+					for (TreningProsireno it : treninziResponse) {
+						if (it.getTrening().getCena() >= cena) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziResponse = pomocna;
+				} catch (Exception e) {
+				}
+				
+			}
+			
+			if (!cenaDo.isEmpty()) {
+				List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+				try {
+					int cena = Integer.parseInt(cenaDo);
+					for (TreningProsireno it : treninziResponse) {
+						if (it.getTrening().getCena() <= cena) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziResponse = pomocna;
+				} catch (Exception e) {
+				}
+				
+			}
+			
+			if (bezDoplate) {
+				List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+				for (TreningProsireno it : treninziResponse) {
+					if (it.getTrening().getCena() == 0) {
+						pomocna.add(it);
+					}
+				}
+				
+				treninziResponse = pomocna;
+			}
+			
+			if (!datumOd.isEmpty()) {
+				try {
+					LocalDateTime datumOdDate = LocalDateTime.parse(datumOd);
+					List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+					for (TreningProsireno it : treninziResponse) {
+						if (LocalDateTime.parse(it.getTrening().getDatum()).compareTo(datumOdDate) >= 0) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziResponse = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			if (!datumDo.isEmpty()) {
+				try {
+					LocalDateTime datumDoDate = LocalDateTime.parse(datumDo);
+					List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+					for (TreningProsireno it : treninziResponse) {
+						if (LocalDateTime.parse(it.getTrening().getDatum()).compareTo(datumDoDate) <= 0) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziResponse = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			if (!tip.isEmpty()) {
+				try {
+					TipObjekta tipObjekta = TipObjekta.valueOf(tip); 
+					List<TreningProsireno> pomocna = new ArrayList<TreningProsireno>();
+					for (TreningProsireno it : treninziResponse) {
+						if (it.getSportskiObjekat().getTipObjekta().equals(tipObjekta)) {
+							pomocna.add(it);
+						}
+					}
+					
+					treninziResponse = pomocna;
+				} catch (Exception e) {
+				}
+			}
+			
+			
+			if (!sortiranjePo.isEmpty()) {
+				if (sortiranjePo.equals("nazivSportskogObjekta")) {
+					if (rastuceSortiranje) {
+						treninziResponse.sort(TreningProsireno.NazivSportskogObjekaComparator);
+					} else {
+						treninziResponse.sort(TreningProsireno.NazivSportskogObjekaComparator);
+					}
+				} else if (sortiranjePo.equals("tipTreninga")) {
+					if (rastuceSortiranje) {
+						treninziResponse.sort(TreningProsireno.TipTreningaComparator);
+					} else {
+						treninziResponse.sort(TreningProsireno.ObrnutiTipTreningaComparator);
+					}
+				}
+			}
+			
+			
+			res.type("application/json");
+			res.status(200);
+			Gson g = new GsonBuilder().setPrettyPrinting().create();
+			String json = g.toJson(treninziResponse, List.class);
+			return json;
+		});
+		
 		get("trening/istorija-pretraga", (req, res) -> {
 			Session ss = req.session(true);
 			Korisnik ulogovaniKorisnik = ss.attribute("user");
@@ -382,7 +562,7 @@ public class TreningController {
 			if (!pretragaTekst.isEmpty()) {
 				List<ProsirenaIstorijaTrening> pomocna = new ArrayList<ProsirenaIstorijaTrening>();
 				for (ProsirenaIstorijaTrening it : treninziIstorija) {
-					if (it.getSportskiObjekat().getNaziv().contains(pretragaTekst.toLowerCase())) {
+					if (it.getSportskiObjekat().getNaziv().contains(pretragaTekst)) {
 						pomocna.add(it);
 					}
 				}
@@ -488,9 +668,9 @@ public class TreningController {
 					}
 				} else if (sortiranjePo.equals("tipTreninga")) {
 					if (rastuceSortiranje) {
-						treninziIstorija.sort(SportskiObjekat.LokacijaComparator);
+						treninziIstorija.sort(ProsirenaIstorijaTrening.TipTreningaComparator);
 					} else {
-						treninziIstorija.sort(SportskiObjekat.ObrnutiLokacijaComparator);
+						treninziIstorija.sort(ProsirenaIstorijaTrening.ObrnutiTipTreningaComparator);
 					}
 				}
 			}
