@@ -108,5 +108,14 @@
       "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8"
     }
   ],
-  "istorija": []
+  "istorija": [],
+  "clanarine": [
+  {
+  	"id": "1",
+  	"naziv": "Clanarina1",
+  	"tip": "MESECNA",
+  	"cena": "3000",
+  	"brojTermina": 12,
+  	"kolikoDanaVazi": 30
+  }]
 }

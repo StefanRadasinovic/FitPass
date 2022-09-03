@@ -6,6 +6,7 @@ import java.io.File;
 
 import controller.SportskiObjekatController;
 import controller.TreningController;
+import controller.ClanarinaController;
 import controller.KorisnikController;
 import data.DataManager;
 
@@ -18,6 +19,7 @@ public class Application {
 		KorisnikController.listen();
 		SportskiObjekatController.listen();
 		TreningController.listen();
+		ClanarinaController.listen();
 		
 		DataManager.readData();
 		
