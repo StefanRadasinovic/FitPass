@@ -26,7 +26,8 @@ function ucitajMenadzerovObjekat() {
  			$("#logo").attr("src", sportskiObjekat.logo);
  			$("#ocena").html(sportskiObjekat.prosecnaOcena);
  			
- 			$("#nav").append('<li class="nav-item"><a class="nav-link" href="/novi_objekat?objekatId=' + sportskiObjekat.id + '">Novi objekat</a></li>')
+ 			$("#nav").append('<li class="nav-item"><a class="nav-link" href="/novi_trening.html?objekatId=' + sportskiObjekat.id + '">Novi trening</a></li>');
+ 			$("#nav").append('<li class="nav-item"><a class="nav-link" href="/korisnici_objekat.html?objekatId=' + sportskiObjekat.id + '">Korisnici</a></li>')
  			
  			ucitajTreningeZaObjekat(sportskiObjekat.id);
         }
@@ -59,11 +60,23 @@ function ucitajTreningeZaObjekat(objekatId) {
 				red += "<td>" + t.trener + "</td>";	
 				red += "<td>" + t.kupac + "</td>";						
 				red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";			
-				red += "<td><a class='btn btn-dark' href='/izmena_treninga.html?treningId=" + t.id + "'>Izmena</td>";				
+				red += "<td><a class='btn btn-dark' href='/izmena_treninga.html?treningId=" + t.id + "'>Izmena</td>";
+				red += `<td><button class='btn btn-danger' onclick='obrisi(${t.id})'>Obrisi</button></td>`;				
 				tableBody.append(red);
 			
 	    }
 	}
 	});
 	
+}
+
+function obrisi(treningId) {
+	$.ajax({
+        url: "/trening/brisanje/" + treningId,
+        type: "DELETE",
+        success: function(data) {
+            alert("Usepsno obrisan");
+            window.location.reload();
+        }
+	});
 }

@@ -164,6 +164,18 @@ public class KorisnikController {
 			return json;
 		});
 		
+		get("/korisnik/uloga", (req, res) -> {
+			res.status(200);
+			
+			Session ss = req.session(true);
+			Korisnik ulogovanikorisnik = ss.attribute("user");
+			if (ulogovanikorisnik == null) {
+				return "";
+			} else {
+				return ulogovanikorisnik.getUloga();
+			}
+		});
+		
 		get("/korisnik/pregled", (req, res) -> {
 			Session ss = req.session(true);
 			Korisnik ulogovanikorisnik = ss.attribute("user");

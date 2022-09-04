@@ -5,13 +5,20 @@ import java.util.List;
 
 import data.DataManager;
 import models.IstorijaTreninga;
+import models.SportskiObjekat;
 import models.Trening;
 import models.TreningTip;
 
 public class TreningService {
 	
 	public List<Trening> sviTreninzi() {
-		return DataManager.data.getTreninzi();
+		List<Trening> list = new ArrayList<Trening>();
+		for (Trening t : DataManager.data.getTreninzi()) {
+			if (!t.isObrisan()) {
+				list.add(t);
+			}
+		}
+		return list;
 	}
 	
 	public List<Trening> getTrenziZaKorisnika(String korisnikId) {
@@ -107,6 +114,16 @@ public class TreningService {
 		}
 		
 		return pomocna;
+	}
+	
+	public void obrisi(Trening trening) {
+		for (Trening t : DataManager.data.getTreninzi()) {
+			if (t.getId().equals(trening.getId())) {
+				t.setObrisan(true);
+			}
+		}
+		
+		DataManager.saveData();
 	}
 	
 }

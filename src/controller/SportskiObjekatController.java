@@ -2,6 +2,7 @@ package controller;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.delete;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -248,6 +249,19 @@ public class SportskiObjekatController {
 				String json = g.toJson(sportskiObjekat, SportskiObjekat.class);
 				return json;
 			}
+		});
+		
+		delete("/sportski-objekat/brisanje/:id", (req, res) -> {
+			res.type("application/json");
+			res.status(200);
+			
+			String objekatId = req.params("id");
+			
+			SportskiObjektiService service = new SportskiObjektiService();
+			SportskiObjekat sob = service.getObjekatPoId(objekatId);
+			service.obrisi(sob);
+			
+			return "Uspesno obrisan";
 		});
 				
 	}

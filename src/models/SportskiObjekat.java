@@ -13,6 +13,7 @@ public class SportskiObjekat {
 	private float prosecnaOcena = 0;
 	private String radnoVreme = "";
 	private String logo;
+	private boolean obrisan;
 	
 	public String getId() {
 		return id;
@@ -69,6 +70,15 @@ public class SportskiObjekat {
 		this.logo = logo;
 	}
 	
+	
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
+
+
 	public static Comparator<SportskiObjekat> NazivComparator = new Comparator<SportskiObjekat>() {
 		public int compare(SportskiObjekat a, SportskiObjekat b) {
 			return a.getNaziv().compareTo(b.getNaziv());

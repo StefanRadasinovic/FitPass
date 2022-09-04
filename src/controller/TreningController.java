@@ -3,6 +3,7 @@ package controller;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
+import static spark.Spark.delete;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -851,6 +852,18 @@ public class TreningController {
 			Gson g = new GsonBuilder().setPrettyPrinting().create();
 			String json = g.toJson(dtos, List.class);
 			return json;
+		});
+		
+		delete("trening/brisanje/:id", (req, res) -> {
+			String treningId = req.params("id");
+			
+			TreningService service = new TreningService();
+			Trening trening = service.getPoId(treningId);
+			
+			service.obrisi(trening);
+			
+			res.status(200);
+			return "Uspesno obrisano";
 		});
 	}
 	

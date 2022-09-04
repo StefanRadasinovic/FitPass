@@ -14,6 +14,8 @@ public class Trening {
 	private String trener;
 	private String sportskiObjekat;
 	private String kupac;
+	private boolean obrisan;
+	
 	public String getId() {
 		return id;
 	}
@@ -85,6 +87,12 @@ public class Trening {
 	}
 	public void setKupac(String kupac) {
 		this.kupac = kupac;
+	}
+	public boolean isObrisan() {
+		return obrisan;
+	}
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 	
 	

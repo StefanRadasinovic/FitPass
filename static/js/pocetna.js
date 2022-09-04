@@ -1,5 +1,6 @@
 $(document).ready( function() {
 	getSportskiObjekti();
+	getUloga();
 });
 
 
@@ -75,6 +76,25 @@ function pretraga() {
                 elem.append(red);
             }
         }
+	});
+}
+
+function getUloga() {
+	$.ajax({
+        url: "korisnik/uloga",
+        type: "GET",
+        success: function(data) {
+			console.log(data);
+            if (data === 'KUPAC') {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_kupac.html'>Kupac</a></li>")
+        	} else if (data === "MENADZER") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_menadzer.html'>Menadzer</a></li>")
+			} else if (data === "ADMINISTRATOR") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_admin.html'>Admin</a></li>")
+			} else if (data === "TRENER") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_trener.html'>Trener</a></li>")
+			}
+		}
 	});
 }
 	

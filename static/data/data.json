@@ -50,7 +50,8 @@
       },
       "prosecnaOcena": 1.0,
       "radnoVreme": "Test",
-      "logo": "/slike/1661722032081.jpg"
+      "logo": "/slike/1661722032081.jpg",
+      "obrisan": false
     },
     {
       "id": "Test2",
@@ -63,7 +64,8 @@
       },
       "prosecnaOcena": 3.0,
       "radnoVreme": "Test2",
-      "logo": "/slike/1661722032081.jpg"
+      "logo": "/slike/1661722032081.jpg",
+      "obrisan": false
     },
     {
       "id": "1661722216776",
@@ -76,7 +78,8 @@
       },
       "prosecnaOcena": 0.0,
       "radnoVreme": "",
-      "logo": "/slike/1661722216774.jpg"
+      "logo": "/slike/1661722216774.jpg",
+      "obrisan": false
     }
   ],
   "treninzi": [
@@ -91,7 +94,8 @@
       "cena": 0,
       "otkazan": true,
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
-      "sportskiObjekat": "Test"
+      "sportskiObjekat": "Test",
+      "obrisan": true
     },
     {
       "id": "4583b060-c20f-4403-b6ed-6b5bfb8a1eb4",
@@ -105,7 +109,8 @@
       "otkazan": false,
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
       "sportskiObjekat": "Test",
-      "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8"
+      "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
+      "obrisan": false
     }
   ],
   "istorija": [],
