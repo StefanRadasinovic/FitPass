@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Pregled clanarine</title>
+    <script src="external/jquery.min.js"></script>
+    <script src="js/clanarina_kupovina_pregled.js"></script>
+    
+    <link rel="stylesheet" href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+    <script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	
+	<h1 class="text-center mb-5">Potvrda kupovine clanarine</h1>
+		
+    <table class="table">
+        <tr>
+            <td><label for="naziv">Naziv</label></td>
+            <td><label id="naziv"></label></td>
+        </tr>
+        <tr>
+            <td><label for = "tip">Tip</label></td>
+            <td><label id="tip"></label></td>
+        </tr>
+        <tr>
+            <td><label for = "cena">Cena</label></td>
+            <td><label id="cena"></label></td>
+        </tr>
+        <tr>
+            <td><label for = "daniVazenja">Dani vazenja</label></td>
+            <td><label id="daniVazenja"></label></td>
+        </tr>
+        <tr>
+            <td><label for = "brojTermina">Broj termina</label></td>
+            <td><label id="brojTermina"></label> </td>
+        </tr>
+        <tr>
+            <td><button onclick="kupovina()" class="btn btn-dark">Kupite</button></td>
+        </tr>
+    </table>
+	
+</body>
+</html>

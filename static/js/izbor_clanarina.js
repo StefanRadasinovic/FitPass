@@ -28,7 +28,7 @@ function getClanarine() {
 				}
 				
 				red += "<td>" + clanarina.kolikoDanaVazi + "</td>";
-				red += "<td><a class='btn btn-dark' href='/clanarina_kupovina.html?clanarinaId=" + clanarina.id + "'>Kupovina</a></td>";
+				red += "<td><a class='btn btn-dark' href='/clanarina_kupovina_pregled.html?clanarinaId=" + clanarina.id + "'>Kupovina</a></td>";
 				red += "</tr>";
 				tableBody.append(red);
             }

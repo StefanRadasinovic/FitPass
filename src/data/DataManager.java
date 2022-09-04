@@ -14,6 +14,7 @@ import com.google.gson.GsonBuilder;
 import models.Clanarina;
 import models.IstorijaTreninga;
 import models.Korisnik;
+import models.KupljenaClanarina;
 import models.SportskiObjekat;
 import models.Trening;
 
@@ -56,6 +57,7 @@ public class DataManager {
 			data.setTreninzi(new ArrayList<Trening>());
 			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			data.setClanarine(new ArrayList<Clanarina>());
+			data.setKupljeneClanarine(new ArrayList<KupljenaClanarina>());
 			System.out.println("Fajl nije pronadjen");
 		} catch (IOException e) {
 			data.setKorisnici(new ArrayList<Korisnik>());
@@ -63,6 +65,7 @@ public class DataManager {
 			data.setTreninzi(new ArrayList<Trening>());
 			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			data.setClanarine(new ArrayList<Clanarina>());
+			data.setKupljeneClanarine(new ArrayList<KupljenaClanarina>());
 			System.out.println("Neuspesno ucitavanje podataka");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,6 +74,7 @@ public class DataManager {
 			data.setTreninzi(new ArrayList<Trening>());
 			data.setIstorija(new ArrayList<IstorijaTreninga>());
 			data.setClanarine(new ArrayList<Clanarina>());
+			data.setKupljeneClanarine(new ArrayList<KupljenaClanarina>());
 			System.out.println("Greska pri ucitavanju");
 		}
 

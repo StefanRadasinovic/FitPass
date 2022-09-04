@@ -29,12 +29,12 @@
       "id": "c89fa961-027f-42a0-94e9-129305450151",
       "uloga": "MENADZER",
       "tip": "BRONZANI",
-      "ime": "marko",
-      "prezime": "markovic",
+      "ime": "a",
+      "prezime": "uuu",
       "korisnickoIme": "mm",
       "lozinka": "a",
       "pol": "ZENSKI",
-      "datumRodjenja": "2022-09-20",
+      "datumRodjenja": "2022-08-15",
       "sakupljeniBodovi": 0
     }
   ],
@@ -50,7 +50,7 @@
       },
       "prosecnaOcena": 1.0,
       "radnoVreme": "Test",
-      "logo": "/images/test"
+      "logo": "/slike/1661722032081.jpg"
     },
     {
       "id": "Test2",
@@ -63,7 +63,7 @@
       },
       "prosecnaOcena": 3.0,
       "radnoVreme": "Test2",
-      "logo": "/images/test"
+      "logo": "/slike/1661722032081.jpg"
     },
     {
       "id": "1661722216776",
@@ -86,7 +86,7 @@
       "tip": "INDIVIDUALNI",
       "trajanje": 0,
       "opis": "asde",
-      "slika": "/test.jpg",
+      "slika": "slike/1661722032081.jpg",
       "datum": "2022-11-11T00:00",
       "cena": 0,
       "otkazan": true,
@@ -110,12 +110,26 @@
   ],
   "istorija": [],
   "clanarine": [
-  {
-  	"id": "1",
-  	"naziv": "Clanarina1",
-  	"tip": "MESECNA",
-  	"cena": "3000",
-  	"brojTermina": 12,
-  	"kolikoDanaVazi": 30
-  }]
+    {
+      "id": "1",
+      "naziv": "Clanarina1",
+      "tip": "MESECNA",
+      "cena": 3000,
+      "brojTermina": 12,
+      "kolikoDanaVazi": 30
+    }
+  ],
+  "kupljeneClanarine": [
+    {
+      "id": "b7f96bec-5a32-42a6-948b-b5d3318b2dbb",
+      "cena": 3000.0,
+      "tip": "MESECNA",
+      "status": "AKTIVNA",
+      "datumPlacanja": "2022-09-04T19:42:51.363984700",
+      "datumVazenja": "2022-10-04T19:42:51.365986500",
+      "terminaUkupno": 12,
+      "terminaOstalo": 30,
+      "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8"
+    }
+  ]
 }

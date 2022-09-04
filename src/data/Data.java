@@ -18,6 +18,7 @@ public class Data {
 	private List<Trening> treninzi = new ArrayList<Trening>();
 	private List<IstorijaTreninga> istorija = new ArrayList<IstorijaTreninga>();
 	private List<Clanarina> clanarine = new ArrayList<Clanarina>();
+	private List<KupljenaClanarina> kupljeneClanarine = new ArrayList<KupljenaClanarina>();
 
 	public Collection<Korisnik> getKorisnici() {
 		return korisnici;
@@ -58,5 +59,14 @@ public class Data {
 	public void setClanarine(List<Clanarina> clanarine) {
 		this.clanarine = clanarine;
 	}
+
+	public List<KupljenaClanarina> getKupljeneClanarine() {
+		return kupljeneClanarine;
+	}
+
+	public void setKupljeneClanarine(List<KupljenaClanarina> kupljeneClanarine) {
+		this.kupljeneClanarine = kupljeneClanarine;
+	}
+	
 	
 }

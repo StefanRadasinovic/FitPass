@@ -26,10 +26,12 @@ import dto.trening.TreningPrikazDTO;
 import dto.trening.TreningProsireno;
 import models.IstorijaTreninga;
 import models.Korisnik;
+import models.KupljenaClanarina;
 import models.SportskiObjekat;
 import models.TipObjekta;
 import models.Trening;
 import models.TreningTip;
+import services.ClanarinaKupovinaService;
 import services.KorisnikService;
 import services.SportskiObjektiService;
 import services.TreningService;
@@ -697,7 +699,18 @@ public class TreningController {
 				return "Prijava postoji";
 			}
 			
-			//clanarina
+			ClanarinaKupovinaService ckService = new ClanarinaKupovinaService();
+			KupljenaClanarina kc = ckService.aktivnaPoKupacId(ulogovaniKorisnik.getId());
+			if (kc == null) {
+				res.status(400);
+				return "Nemate clanarinu";
+			} else if (LocalDateTime.parse(kc.getDatumVazenja()).compareTo(LocalDateTime.now())  < 0) {
+				res.status(400);
+				return "Clanarina je istekla";
+			} else if (kc.getTerminaOstalo() == 0) {
+				res.status(400);
+				return "Nemate preostale termine";
+			}
 			
 			try {
 				IstorijaTreninga it = new IstorijaTreninga();
@@ -707,6 +720,7 @@ public class TreningController {
 				it.setTrening(dto.getTrening());
 				
 				service.dodajNoviZapisUIstoriju(it);
+				ckService.azurirajTerminaPreostalo(kc);
 				res.status(200);
 				return "Uspesno";
 			} catch (Exception e) {

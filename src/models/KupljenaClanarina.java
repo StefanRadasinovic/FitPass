@@ -9,7 +9,7 @@ public class KupljenaClanarina {
 	private String datumVazenja;
 	private int terminaUkupno;
 	private int terminaOstalo;
-	private Korisnik kupac;
+	private String kupac;
 	public String getId() {
 		return id;
 	}
@@ -58,10 +58,10 @@ public class KupljenaClanarina {
 	public void setTerminaOstalo(int terminaOstalo) {
 		this.terminaOstalo = terminaOstalo;
 	}
-	public Korisnik getKupac() {
+	public String getKupac() {
 		return kupac;
 	}
-	public void setKupac(Korisnik kupac) {
+	public void setKupac(String kupac) {
 		this.kupac = kupac;
 	}
 	
