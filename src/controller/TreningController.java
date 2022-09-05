@@ -687,14 +687,14 @@ public class TreningController {
 			return json;
 		});
 		
-		post("/trening/prijava", (req, res) -> {
+		post("/trening/prijava/:treningId", (req, res) -> {
 			Session ss = req.session(true);
 			Korisnik ulogovaniKorisnik = ss.attribute("user");
 			
+			String treningId = req.params("treningId");
 			TreningService service = new TreningService();
-			Gson g = new GsonBuilder().setPrettyPrinting().create();
-			PrijavaNaTreningDTO dto = g.fromJson(req.body(), PrijavaNaTreningDTO.class);
-			IstorijaTreninga ti = service.getIstorijaPoKorisnikITrening(ulogovaniKorisnik.getId(), dto.getTrening());
+			Trening trening = service.getPoId(treningId);
+			IstorijaTreninga ti = service.getIstorijaPoKorisnikITrening(ulogovaniKorisnik.getId(), treningId);
 			if (ti != null) {
 				res.status(400);
 				return "Prijava postoji";
@@ -720,7 +720,7 @@ public class TreningController {
 				it.setId(UUID.randomUUID().toString());
 				it.setDatumIVremePrijave(LocalDateTime.now().toString());
 				it.setKupac(ulogovaniKorisnik.getId());
-				it.setTrening(dto.getTrening());
+				it.setTrening(treningId);
 				
 				service.dodajNoviZapisUIstoriju(it);
 				ckService.azurirajTerminaPreostalo(kc);

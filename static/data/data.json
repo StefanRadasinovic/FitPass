@@ -4,12 +4,12 @@
       "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
       "uloga": "MENADZER",
       "tip": "BRONZANI",
-      "ime": "a",
-      "prezime": "uuu",
+      "ime": "Jovan",
+      "prezime": "Jovanovic",
       "korisnickoIme": "a",
       "lozinka": "aa",
-      "pol": "ZENSKI",
-      "datumRodjenja": "2022-08-15",
+      "pol": "MUSKI",
+      "datumRodjenja": "2022-09-20",
       "sakupljeniBodovi": 0,
       "objekatKojimUpravlja": "Test"
     },
@@ -17,25 +17,37 @@
       "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
       "uloga": "TRENER",
       "tip": "BRONZANI",
-      "ime": "a",
-      "prezime": "uuu",
+      "ime": "Jovan",
+      "prezime": "Jovanovic",
       "korisnickoIme": "b",
       "lozinka": "bb",
-      "pol": "ZENSKI",
-      "datumRodjenja": "2022-08-15",
+      "pol": "MUSKI",
+      "datumRodjenja": "2022-09-20",
       "sakupljeniBodovi": 0
     },
     {
       "id": "c89fa961-027f-42a0-94e9-129305450151",
       "uloga": "MENADZER",
       "tip": "BRONZANI",
-      "ime": "a",
-      "prezime": "uuu",
+      "ime": "Jovan",
+      "prezime": "Jovanovic",
       "korisnickoIme": "mm",
       "lozinka": "a",
-      "pol": "ZENSKI",
-      "datumRodjenja": "2022-08-15",
+      "pol": "MUSKI",
+      "datumRodjenja": "2022-09-20",
       "sakupljeniBodovi": 0
+    },
+    {
+      "id": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
+      "uloga": "KUPAC",
+      "tip": "BRONZANI",
+      "ime": "Jovan",
+      "prezime": "Jovanovic",
+      "korisnickoIme": "j@yahoo.com",
+      "lozinka": "123",
+      "pol": "MUSKI",
+      "datumRodjenja": "2022-09-20",
+      "sakupljeniBodovi": -54
     }
   ],
   "sportskiObjekti": [
@@ -101,7 +113,7 @@
       "id": "4583b060-c20f-4403-b6ed-6b5bfb8a1eb4",
       "naziv": "qwe",
       "tip": "GRUPNI",
-      "trajanje": 22,
+      "trajanje": 25,
       "opis": "qwe",
       "slika": "/slike/1661725216282.jpg",
       "datum": "2022-08-29T00:17",
@@ -109,11 +121,17 @@
       "otkazan": false,
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
       "sportskiObjekat": "Test",
-      "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
       "obrisan": false
     }
   ],
-  "istorija": [],
+  "istorija": [
+    {
+      "id": "bc4767b4-ba12-4691-a132-48bd021cee94",
+      "datumIVremePrijave": "2022-09-05T13:35:52.926705700",
+      "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
+      "trening": "4583b060-c20f-4403-b6ed-6b5bfb8a1eb4"
+    }
+  ],
   "clanarine": [
     {
       "id": "1",
@@ -129,12 +147,23 @@
       "id": "b7f96bec-5a32-42a6-948b-b5d3318b2dbb",
       "cena": 3000.0,
       "tip": "MESECNA",
-      "status": "AKTIVNA",
+      "status": "NEAKTIVNA",
       "datumPlacanja": "2022-09-04T19:42:51.363984700",
       "datumVazenja": "2022-10-04T19:42:51.365986500",
       "terminaUkupno": 12,
-      "terminaOstalo": 30,
+      "terminaOstalo": 12,
       "kupac": "3c5c0203-7f10-478b-b1b3-feae97fb58f8"
+    },
+    {
+      "id": "e601079c-b940-40b2-8de2-2be4fc325c06",
+      "cena": 3000.0,
+      "tip": "MESECNA",
+      "status": "AKTIVNA",
+      "datumPlacanja": "2022-09-05T13:35:45.121757600",
+      "datumVazenja": "2022-10-05T13:35:45.125755",
+      "terminaUkupno": 12,
+      "terminaOstalo": 11,
+      "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915"
     }
   ]
 }

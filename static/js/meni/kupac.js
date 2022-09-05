@@ -16,9 +16,8 @@ function ucitajIstoriju() {
 	        for (let istorija of data) {
 	            let red = "<tr>";
 					red += "<td>" + istorija.datum + "</td>";
-					red += "<td>" + istorija.trening + "</td>";
-					red += "<td>" + istorija.trener + "</td>";
 					red += "<td>" + istorija.sportskiObjekat + "</td>";
+					red += "<td>" + istorija.trening + "</td>";
 					red += "</tr>"
 					tableBody.append(red);
 	        }
@@ -63,9 +62,8 @@ function pretraga() {
 	        for (let istorija of data) {
 	            let red = "<tr>";
 					red += "<td>" + istorija.datum + "</td>";
-					red += "<td>" + istorija.trening + "</td>";
-					red += "<td>" + istorija.trener + "</td>";
-					red += "<td>" + istorija.sportskiObjekat + "</td>";
+					red += "<td>" + istorija.sportskiObjekat.naziv + "</td>";
+					red += "<td>" + istorija.trening.naziv + "</td>";
 					red += "</tr>"
 					tableBody.append(red);
 	        }

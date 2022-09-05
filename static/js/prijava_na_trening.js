@@ -64,6 +64,22 @@ function ucitajTreningeZaObjekat(objekatId) {
 			
 	    }
 	}
-	});
+});
 	
+}
+
+function prijava(treningId) {
+	$.ajax({
+	    url: "/trening/prijava/" + treningId,
+	    type: "POST",
+	    error: function(error) {
+
+			alert(error.responseText)
+	
+		},
+	    success: function(data) {
+			alert("Uspesno sacuvano");
+			window.location.href = "/";
+		}
+	});
 }

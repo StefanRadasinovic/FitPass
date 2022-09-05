@@ -75,7 +75,7 @@ public class ClanarinaController {
 			kc.setTip(clanarina.getTip());
 			kc.setCena(clanarina.getCena());
 			kc.setTerminaUkupno(clanarina.getBrojTermina());
-			kc.setTerminaOstalo(clanarina.getKolikoDanaVazi());
+			kc.setTerminaOstalo(clanarina.getBrojTermina());
 			kc.setDatumPlacanja(LocalDateTime.now().toString());
 			kc.setDatumVazenja(LocalDateTime.now().plusDays(clanarina.getKolikoDanaVazi()).toString());
 			kc.setKupac(ulogovaniKorisnik.getId());
