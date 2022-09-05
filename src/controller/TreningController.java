@@ -707,8 +707,10 @@ public class TreningController {
 				return "Nemate clanarinu";
 			} else if (LocalDateTime.parse(kc.getDatumVazenja()).compareTo(LocalDateTime.now())  < 0) {
 				res.status(400);
+				ckService.staraClanarinaDeaktivacija(ulogovaniKorisnik.getId());
 				return "Clanarina je istekla";
 			} else if (kc.getTerminaOstalo() == 0) {
+				ckService.staraClanarinaDeaktivacija(ulogovaniKorisnik.getId());
 				res.status(400);
 				return "Nemate preostale termine";
 			}

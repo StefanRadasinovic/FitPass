@@ -63,7 +63,7 @@ public class KorisnikService {
         DataManager.saveData();
     }
 	
-	public Korisnik getPoId(String korisnikId) throws Exception {
+	public Korisnik getPoId(String korisnikId) {
 		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
 		for (Korisnik korisnik : korisnici) {
 			if (korisnik.getId().equals(korisnikId)) {
@@ -103,7 +103,7 @@ public class KorisnikService {
 		return pomocna;
 	}
 	
-	public void azuriraj(Korisnik korisnik) throws Exception {
+	public void azuriraj(Korisnik korisnik) {
 		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
 	    for (Korisnik k : korisnici) {
 	    	if (korisnik.getId().equals(korisnik.getId())) {

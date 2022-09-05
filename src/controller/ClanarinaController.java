@@ -82,12 +82,8 @@ public class ClanarinaController {
 			kc.setStatus(StatusClanarina.AKTIVNA);
 			
 			ClanarinaKupovinaService ckService = new ClanarinaKupovinaService(); 
-			int poeni = ckService.staraClanarinaDeaktivacija(ulogovaniKorisnik.getId());
+			ckService.staraClanarinaDeaktivacija(ulogovaniKorisnik.getId());
 			ckService.sacuvaj(kc);
-			
-			KorisnikService kService = new KorisnikService();
-			ulogovaniKorisnik.setSakupljeniBodovi(ulogovaniKorisnik.getSakupljeniBodovi() + poeni);
-			kService.azuriraj(ulogovaniKorisnik);
 			
 			res.type("application/json");
 			res.status(200);
