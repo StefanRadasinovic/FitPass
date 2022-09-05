@@ -1,28 +1,28 @@
-$(document).ready( function() {
+$(document).ready(function() {
 	ucitajIstoriju();
 });
 
 function ucitajIstoriju() {
 	$.ajax({
-	    url: "/trening/istorija",
-	    type: "GET",
-	    contentType: "application/json",
-	    dataType: "json",
-	    success: function(data) {
-			
+		url: "/trening/istorija",
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		success: function(data) {
+
 			let tableBody = $("#istorija-treninga");
-			
-	        tableBody.html("");
-	        for (let istorija of data) {
-	            let red = "<tr>";
-					red += "<td>" + istorija.datum + "</td>";
-					red += "<td>" + istorija.sportskiObjekat + "</td>";
-					red += "<td>" + istorija.trening + "</td>";
-					red += "</tr>"
-					tableBody.append(red);
-	        }
-			
-	    }
+
+			tableBody.html("");
+			for (let istorija of data) {
+				let red = "<tr>";
+				red += "<td>" + istorija.datum + "</td>";
+				red += "<td>" + istorija.sportskiObjekat + "</td>";
+				red += "<td>" + istorija.trening + "</td>";
+				red += "</tr>"
+				tableBody.append(red);
+			}
+
+		}
 	});
 }
 
@@ -36,7 +36,7 @@ function pretraga() {
 	let bezDoplate = $('#bezDoplate').is(':checked');
 	let rastuceSortiranje = $("#sortRastuce").is(":checked");
 	let sortiranjePo = $("#sortiranjePo").val();
-	
+
 	let queryParams = jQuery.param({
 		pretragaTekst,
 		cenaOd,
@@ -50,23 +50,23 @@ function pretraga() {
 	})
 
 	$.ajax({
-        url: "/trening/istorija-pretraga?" + queryParams,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data) {
-            
-            let tableBody = $("#istorija-treninga");
-			
-	        tableBody.html("");
-	        for (let istorija of data) {
-	            let red = "<tr>";
-					red += "<td>" + istorija.datum + "</td>";
-					red += "<td>" + istorija.sportskiObjekat.naziv + "</td>";
-					red += "<td>" + istorija.trening.naziv + "</td>";
-					red += "</tr>"
-					tableBody.append(red);
-	        }
-        }
+		url: "/trening/istorija-pretraga?" + queryParams,
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		success: function(data) {
+
+			let tableBody = $("#istorija-treninga");
+
+			tableBody.html("");
+			for (let istorija of data) {
+				let red = "<tr>";
+				red += "<td>" + istorija.datum + "</td>";
+				red += "<td>" + istorija.sportskiObjekat.naziv + "</td>";
+				red += "<td>" + istorija.trening.naziv + "</td>";
+				red += "</tr>"
+				tableBody.append(red);
+			}
+		}
 	});
 }

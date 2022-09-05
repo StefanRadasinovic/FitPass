@@ -1,22 +1,22 @@
-$(document).ready( function() {
+$(document).ready(function() {
 	ucitajGrupneTreninge();
 });
 
 function ucitajGrupneTreninge() {
 	$.ajax({
-	    url: "/treninzi/trener/grupni",
-	    type: "GET",
-	    contentType: "application/json",
-	    dataType: "json",
-	    error: function(error) {
-			
+		url: "/treninzi/trener/grupni",
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		error: function(error) {
+
 		},
-	    success: function(data) {
+		success: function(data) {
 			treninzi = data;
 			let tableBody = $("#grupni-treninzi");
-	        tableBody.html("");
-	        for (let t of treninzi) {
-	            let red = "<tr>";
+			tableBody.html("");
+			for (let t of treninzi) {
+				let red = "<tr>";
 				red += "<td>" + t.naziv + "</td>";
 				red += "<td>" + t.objekat + "</td>";
 				red += "<td>" + t.tip + "</td>";
@@ -26,29 +26,29 @@ function ucitajGrupneTreninge() {
 				red += "<td>" + t.datum + "</td>";
 				red += "<td>" + t.trener + "</td>";
 				if (t.kupac) {
-					red += "<td>" + t.kupac + "</td>";		
+					red += "<td>" + t.kupac + "</td>";
 				} else {
 					red += "<td>/</td>";
 				}
-				red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";				
+				red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
 				tableBody.append(red);
 			}
-				
+
 			$.ajax({
-			    url: "/treninzi/trener/individualni",
-			    type: "GET",
-			    contentType: "application/json",
-			    dataType: "json",
-			    error: function(error) {
-					
+				url: "/treninzi/trener/individualni",
+				type: "GET",
+				contentType: "application/json",
+				dataType: "json",
+				error: function(error) {
+
 				},
-			    success: function(data) {
-					
+				success: function(data) {
+
 					treninzi = data;
 					let tableBody = $("#individualni-treninzi");
-			        tableBody.html("");
-			        for (let t of treninzi) {
-			            let red = "<tr>";
+					tableBody.html("");
+					for (let t of treninzi) {
+						let red = "<tr>";
 						red += "<td>" + t.naziv + "</td>";
 						red += "<td>" + t.objekat + "</td>";
 						red += "<td>" + t.tip + "</td>";
@@ -58,18 +58,18 @@ function ucitajGrupneTreninge() {
 						red += "<td>" + t.datum + "</td>";
 						red += "<td>" + t.trener + "</td>";
 						if (t.kupac) {
-							red += "<td>" + t.kupac + "</td>";		
+							red += "<td>" + t.kupac + "</td>";
 						} else {
 							red += "<td>/</td>";
 						}
 						red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-						red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
+						red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";
 						tableBody.append(red);
-			        }
-					
-			    }
+					}
+
+				}
 			});
-	    }
+		}
 	});
 }
 
@@ -83,7 +83,7 @@ function pretraga() {
 	let bezDoplate = $('#bezDoplate').is(':checked');
 	let rastuceSortiranje = $("#sortRastuce").is(":checked");
 	let sortiranjePo = $("#sortiranjePo").val();
-	
+
 	let queryParams = jQuery.param({
 		pretragaTekst,
 		cenaOd,
@@ -97,19 +97,19 @@ function pretraga() {
 	})
 
 	$.ajax({
-        url: "/trening/pretraga?" + queryParams,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json",
-        success: function(data) {
-            
-            let tableBodyIndividualni = $("#individualni-treninzi");
-            let tableBodyGrupni = $("#grupni-treninzi");
-	        tableBodyIndividualni.html("");
-	        tableBodyGrupni.html("");
-	        for (let treningProsireno of data) {
+		url: "/trening/pretraga?" + queryParams,
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		success: function(data) {
+
+			let tableBodyIndividualni = $("#individualni-treninzi");
+			let tableBodyGrupni = $("#grupni-treninzi");
+			tableBodyIndividualni.html("");
+			tableBodyGrupni.html("");
+			for (let treningProsireno of data) {
 				let t = treningProsireno.trening;
-				
+
 				if (t.tip === "INDIVIDUALNI") {
 					let red = "<tr>";
 					red += "<td>" + t.naziv + "</td>";
@@ -121,13 +121,13 @@ function pretraga() {
 					red += "<td>" + t.datum + "</td>";
 					red += "<td>" + treningProsireno.trener + "</td>";
 					if (t.kupac) {
-						red += "<td>" + t.kupac + "</td>";		
+						red += "<td>" + t.kupac + "</td>";
 					} else {
 						red += "<td>/</td>";
 					}
 					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
-					tableBodyIndividualni.append(red);				
+					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";
+					tableBodyIndividualni.append(red);
 				} else {
 					let red = "<tr>";
 					red += "<td>" + t.naziv + "</td>";
@@ -139,31 +139,31 @@ function pretraga() {
 					red += "<td>" + t.datum + "</td>";
 					red += "<td>" + treningProsireno.trener + "</td>";
 					if (t.kupac) {
-						red += "<td>" + t.kupac + "</td>";		
+						red += "<td>" + t.kupac + "</td>";
 					} else {
 						red += "<td>/</td>";
 					}
 					red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";				
+					red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";
 					tableBodyGrupni.append(red);
 				}
-	
-	        }
-        }
+
+			}
+		}
 	});
 }
 
 function otkazi(treningId) {
 	$.ajax({
-	    url: "/trening/otkazivanje/" + treningId,
-	    type: "PUT",
-	    dataType: "json",
-	    error: function(error) {
+		url: "/trening/otkazivanje/" + treningId,
+		type: "PUT",
+		dataType: "json",
+		error: function(error) {
 			alert(error.responseText)
 		},
-	    success: function(data) {
+		success: function(data) {
 			alert("Sacuvano");
 			window.location.reload();
-	    }
+		}
 	});
 }

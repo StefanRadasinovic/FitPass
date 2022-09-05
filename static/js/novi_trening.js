@@ -44,10 +44,10 @@ function getKupci() {
 		        dataType: "json",
 		        complete: function(data) {
 		            let treneri = data.responseJSON;
-		            let select = $("#trener");    
+		            let selectTrener = $("#trener");    
 		        
 		            for (let t of treneri) {
-		                select.append("<option value='" + t.id + "' >" + t.ime + " " + t.prezime + "</option>");
+		                selectTrener.append("<option value='" + t.id + "' >" + t.ime + " " + t.prezime + "</option>");
 		            }
 					
 					if (treneri.length === 0) {

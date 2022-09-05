@@ -1,117 +1,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Administrator</title>
-    <script src="/external/jquery.min.js"></script>
-    <script src="/js/meni/admin.js"></script>
-    
-    <link rel="stylesheet" href="/external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Administrator</title>
+<script src="/external/jquery.min.js"></script>
+<script src="/js/meni/admin.js"></script>
 
-    <script src="/external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    
+<link rel="stylesheet"
+	href="/external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+<script src="/external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 	<nav class="navbar navbar-dark bg-dark navbar-expand">
-	  <ul id="nav" class="navbar-nav">
-	      <li class="nav-item">
-	      	<a class="nav-link" href="/">Pocetna</a>
-	      </li>
-	      
-	      <li class="nav-item">
-	      	<a class="nav-link" href="/meni/novi_objekat.html">Novi objekat</a>
-	      </li>
-	      
-	      <li class="nav-item">
-	      	<a class="nav-link" href="/sportski_objekti_admin.html">Sportski objekti</a>
-	      </li>
-	        
-      </ul>
+		<ul id="nav" class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/">Pocetna</a></li>
+
+			<li class="nav-item"><a class="nav-link"
+				href="/meni/novi_objekat.html">Novi objekat</a></li>
+
+			<li class="nav-item"><a class="nav-link"
+				href="/sportski_objekti_admin.html">Sportski objekti</a></li>
+
+		</ul>
 	</nav>
-    
-    <main>
-    	<h1 class="text-center" style="margin-top: 20px;">Korisnici</h1>
-    	
-    	<div style="margin-bottom: 40px; margin-left: 20px;">
-		   <input id="pretraga" type="text" class="form-control" aria-label="Pretraga" style="width: 70%;">
-			   
-			   <label>Pretraga po</label>
-	      <select id="pretragaPo">
-	      	<option value="ime">Ime</option>
-	      	<option value="prezime">Prezime</option>
-	      	<option value="korisnicko-ime">Korisnicko ime</option>
-	      </select>
-	   
-		 </div>
-    	
-    	<div style="margin-left: 20px; margin-bottom: 20px;">
-		 	
-		 	<div>
-				 <div>
-				 	<label>Uloga</label>
-				 	<select id="uloga">
-				 		<option value="">-</option>
-				 		<option value="ADMIN">admin</option>
-				 		<option value="KUPAC">kupac</option>
-				 		<option value="TRENER">trener</option>
-				 		<option value="MENADZER">menadzer</option>
-				 	</select>
-				 </div>
-				 
-				 <div>
-				 	<label>Tip</label>
-				 	<select id="tip">
-				 		<option value="">-</option>
-				 		<option value="ZLATNI">zlatni</option>
-				 		<option value="BRONZANI">bronzani</option>
-				 		<option value="SREBRNI">srebrni</option>
-				 	</select>
-				 </div>
-		 	</div>
-		 	
-		 	<div>
-		 		<h3 >Sortiranje</h3>
-		 		
-		 		<div>
-			 		<select id="sortiranjePo" >
-			 			<option value=""></option>
-			 			<option value="ime">ime</option>
-			 			<option value="prezime">prezime</option>
-			 			<option value="korisnicko-ime">korisnicko ime</option>
-			 			<option value="broj-bodova">broj bodova</option>
-			 		</select>
-		 		</div>
-		 		
-		 		<div>
-		 			<label>Rastuce <input id="sortRastuce" type="checkbox"  checked /></label>
-		 		</div>
-		 	</div>
-		 	
-		 </div>
-		 
-		 <div style="margin: 20px;">
-		 	<button class="btn btn-dark" onclick="pretraga()">Pretraga</button>
-		 </div>
-    	
-	    <table class="table w-75 m-auto">
-    		<thead>
-    			<tr>
-                    <th>Ime</th>
-                    <th>Prezime</th>
-                    <th>Korisnicko ime</th>
-                    <th>Uloga</th>
-                    <th>Tip</th>
-                    <th>Pol</th>
-                    <th>Datum rodjenja</th>
-                    <th>Broj bodova</th>
-                </tr>
-    		</thead>
-    		<tbody id="korisnici">
-    		
-    		</tbody>
-    	</table>
-    	
-    </main>
+
+	<main>
+		<h1 class="text-center" style="margin-top: 20px;">Korisnici</h1>
+
+		<div style="margin-bottom: 40px; margin-left: 20px;">
+			<input id="pretraga" type="text" class="form-control"
+				aria-label="Pretraga" style="width: 70%;"> <label>Pretraga
+				po</label> <select id="pretragaPo">
+				<option value="ime">Ime</option>
+				<option value="prezime">Prezime</option>
+				<option value="korisnicko-ime">Korisnicko ime</option>
+			</select>
+
+		</div>
+
+		<div style="margin-left: 20px; margin-bottom: 20px;">
+
+			<div>
+				<div>
+					<label>Uloga</label> <select id="uloga">
+						<option value="">-</option>
+						<option value="ADMIN">admin</option>
+						<option value="KUPAC">kupac</option>
+						<option value="TRENER">trener</option>
+						<option value="MENADZER">menadzer</option>
+					</select>
+				</div>
+
+				<div>
+					<label>Tip</label> <select id="tip">
+						<option value="">-</option>
+						<option value="ZLATNI">zlatni</option>
+						<option value="BRONZANI">bronzani</option>
+						<option value="SREBRNI">srebrni</option>
+					</select>
+				</div>
+			</div>
+
+			<div>
+				<h3>Sortiranje</h3>
+
+				<div>
+					<select id="sortiranjePo">
+						<option value=""></option>
+						<option value="ime">ime</option>
+						<option value="prezime">prezime</option>
+						<option value="korisnicko-ime">korisnicko ime</option>
+						<option value="broj-bodova">broj bodova</option>
+					</select>
+				</div>
+
+				<div>
+					<label>Rastuce <input id="sortRastuce" type="checkbox"
+						checked /></label>
+				</div>
+			</div>
+
+		</div>
+
+		<div style="margin: 20px;">
+			<button class="btn btn-dark" onclick="pretraga()">Pretraga</button>
+		</div>
+
+		<table class="table w-75 m-auto">
+			<thead>
+				<tr>
+					<th>Ime</th>
+					<th>Prezime</th>
+					<th>Korisnicko ime</th>
+					<th>Uloga</th>
+					<th>Tip</th>
+					<th>Pol</th>
+					<th>Datum rodjenja</th>
+					<th>Broj bodova</th>
+				</tr>
+			</thead>
+			<tbody id="korisnici">
+
+			</tbody>
+		</table>
+
+	</main>
 </body>
 </html>

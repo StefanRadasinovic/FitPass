@@ -3,58 +3,60 @@
 <head>
 
 <title>Kreiranje korisnika</title>
-    <script src="external/jquery.min.js"></script>
-       
-	<link rel="stylesheet" href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-	<script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-	
-	<script src="js/kreiranje_korisnika.js"></script>
+<script src="external/jquery.min.js"></script>
+
+<link rel="stylesheet"
+	href="external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<script src="external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
+<script src="js/kreiranje_korisnika.js"></script>
 
 </head>
 <body>
 
-<h1>
-	Kreirajte korisnika
-</h1>
+	<h1>Kreirajte korisnika</h1>
 
-<form id="registracija" class="w-75 m-auto">
-	<div class="form-group">		
-		<label for="ime">Ime</label> 
-		<input type="text" class="form-control" id="ime" name="ime" required>
-	</div>
-	<div class="form-group">
-		<label for="prezime">Prezime</label> 
-		<input type="text" class="form-control" id="prezime" name="prezime" required>
-	</div>
-	<div class="form-group">
-		<label for="korisnickoIme">Korisnicko ime</label>
-		<input type="email" class="form-control" id="korisnickoIme" name="korisnickoIme" required>
-	</div>
-	<div class="form-group">
-		<label for="lozinka">Lozinka</label> 
-		<input type="password" class="form-control" id="lozinka" name="lozinka" required>
-	</div>
-	<div class="form-group">
-		<label for="datumRodjenja">Datum rodjenja</label>
-		<input type="date" class="form-control" id="datumRodjenja"  name="datumRodjenja" required>
-	</div>
-	<div class="form-group">
-		<label for="pol">Pol</label>
-		<select id = "pol" name="pol" class="form-control">
-			<option value="MUSKI">muski</option>
-			<option value="ZENSKI">zenski</option> 
-		</select>
-	</div>
-	<div class="form-group" id = "uloga">	
-		<label for="uloga">Uloga</label>
-		<select id = "uloga" name="uloga" class="form-control">
-			<option value="TRENER">trener</option>
-			<option value="MENADZER">menadzer</option> 
-		</select>
-	</div>
-	<div class="form-group">
-		 <input id = "kupac" type="button" value="Dodaj" onclick="registruj()" class="btn btn-primary">
-	 </div>	
- </form>
+	<form id="registracija" class="w-75 m-auto">
+		<div class="form-group">
+			<label for="ime">Ime</label> <input type="text" class="form-control"
+				id="ime" name="ime" required>
+		</div>
+		<div class="form-group">
+			<label for="prezime">Prezime</label> <input type="text"
+				class="form-control" id="prezime" name="prezime" required>
+		</div>
+		<div class="form-group">
+			<label for="korisnickoIme">Korisnicko ime</label> <input type="email"
+				class="form-control" id="korisnickoIme" name="korisnickoIme"
+				required>
+		</div>
+		<div class="form-group">
+			<label for="lozinka">Lozinka</label> <input type="password"
+				class="form-control" id="lozinka" name="lozinka" required>
+		</div>
+		<div class="form-group">
+			<label for="datumRodjenja">Datum rodjenja</label> <input type="date"
+				class="form-control" id="datumRodjenja" name="datumRodjenja"
+				required>
+		</div>
+		<div class="form-group">
+			<label for="pol">Pol</label> <select id="pol" name="pol"
+				class="form-control">
+				<option value="MUSKI">muski</option>
+				<option value="ZENSKI">zenski</option>
+			</select>
+		</div>
+		<div class="form-group" id="uloga">
+			<label for="uloga">Uloga</label> <select id="uloga" name="uloga"
+				class="form-control">
+				<option value="TRENER">trener</option>
+				<option value="MENADZER">menadzer</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<input id="kupac" type="button" value="Dodaj" onclick="registruj()"
+				class="btn btn-primary">
+		</div>
+	</form>
 </body>
 </html>

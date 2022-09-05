@@ -1,83 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Menadzer</title>
-    <script src="/external/jquery.min.js"></script>
-    <script src="/js/meni/menadzer.js"></script>
-    
-    <link rel="stylesheet" href="/external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
+<title>Menadzer</title>
+<script src="/external/jquery.min.js"></script>
+<script src="/js/meni/menadzer.js"></script>
 
-    <script src="/external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    
+<link rel="stylesheet"
+	href="/external/bootstrap-4.3.1-dist/css/bootstrap.min.css">
+
+<script src="/external/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
 	<nav class="navbar navbar-dark bg-dark navbar-expand">
-	  <ul id="nav" class="navbar-nav">
-	      <li class="nav-item">
-	      	<a class="nav-link" href="/">Pocetna</a>
-	      </li>
-	        
-      </ul>
+		<ul id="nav" class="navbar-nav">
+			<li class="nav-item"><a class="nav-link" href="/">Pocetna</a></li>
+
+		</ul>
 	</nav>
-    
-    <main>
-    	<h1 class="text-center" style="margin-top: 20px;">Objekat kojim upravljate</h1>
-    	
-	    <table id="objekat" class="table">
-	        <tr>
-	            <td><label for="naziv">Naziv</label></td>
-	            <td>
-	            	<label id="naziv"></label>
-            		<input type="hidden" class="form-control" id="objekatId" name="naziv">
-            	</td>
-	        </tr>
-	        <tr>
-	            <td><label for = "tip">Tip</label></td>
-	            <td><label id="tip" ></label></td>
-	        </tr>
-	        <tr>
-	            <td><label for = "status">Status</label></td>
-	            <td><label id="status" ></label></td>
-	        </tr>
-	        <tr>
-	            <td><label for = "lokacija">Lokacija</label></td>
-	            <td><label id="lokacija" ></label></td>
-	        </tr>
-	        <tr>
-	            <td><label for = "logo">Logo</label></td>
-	            <td><img src = "" id="logo" name="logo" height="100" width="100"></td>
-	        </tr>
-	        <tr>
-	            <td><label for = "ocena">Prosecna ocena</label></td>
-	            <td><label id="ocena"></label></td>
-	        </tr>
-	        
-	    </table>
-    	
-    	<h1>Treninzi</h1>
-    	<table class="table">
-    		<thead>
-    			<tr>
-                    <th>Naziv</th>
-                    <th>Objekat</th>
-                    <th>Status</th>
-                    <th>Tip</th>
-                    <th>Trajanje</th>
-                    <th>Opis</th>
-                    <th>Datum</th>
-                    <th>Trener</th>
-                    <th>Trener</th>
-                    <th>Kupac</th>
-                    <th>Slika</th>
-                    <th></th>
-                </tr>
-    		</thead>
-    		<tbody id="treninzi">
-    		
-    		</tbody>
-    	</table>
-    </main>
+
+	<main>
+		<h1 class="text-center" style="margin-top: 20px;">Objekat kojim
+			upravljate</h1>
+
+		<table id="objekat" class="table">
+			<tr>
+				<td><label for="naziv">Naziv</label></td>
+				<td><label id="naziv"></label> <input type="hidden"
+					class="form-control" id="objekatId" name="naziv"></td>
+			</tr>
+			<tr>
+				<td><label for="tip">Tip</label></td>
+				<td><label id="tip"></label></td>
+			</tr>
+			<tr>
+				<td><label for="status">Status</label></td>
+				<td><label id="status"></label></td>
+			</tr>
+			<tr>
+				<td><label for="lokacija">Lokacija</label></td>
+				<td><label id="lokacija"></label></td>
+			</tr>
+			<tr>
+				<td><label for="logo">Logo</label></td>
+				<td><img src="" id="logo" name="logo" height="100" width="100"></td>
+			</tr>
+			<tr>
+				<td><label for="ocena">Prosecna ocena</label></td>
+				<td><label id="ocena"></label></td>
+			</tr>
+
+		</table>
+
+		<h1>Treninzi</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Naziv</th>
+					<th>Objekat</th>
+					<th>Status</th>
+					<th>Tip</th>
+					<th>Trajanje</th>
+					<th>Opis</th>
+					<th>Datum</th>
+					<th>Trener</th>
+					<th>Trener</th>
+					<th>Kupac</th>
+					<th>Slika</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="treninzi">
+
+			</tbody>
+		</table>
+	</main>
 </body>
 </html>
