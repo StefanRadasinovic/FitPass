@@ -1,4 +1,4 @@
-$(document).ready( function() {
+$(document).ready(function() {
 	getSportskiObjekti();
 	getUloga();
 });
@@ -6,16 +6,16 @@ $(document).ready( function() {
 
 function getSportskiObjekti() {
 	$.ajax({
-        url: "sportski-objekti",
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json",
-        complete: function(data) {
-            const sportskiObjekti = data.responseJSON;
-            
-            let elem = $("#objekti");
-            elem.html("");
-            for (let s of sportskiObjekti) {
+		url: "sportski-objekti",
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		complete: function(data) {
+			const sportskiObjekti = data.responseJSON;
+
+			let elem = $("#objekti");
+			elem.html("");
+			for (let s of sportskiObjekti) {
 				let red = "<tr>"
 				red += "<td>" + s.naziv + "</td>";
 				red += "<td>" + s.tipObjekta + "</td>";
@@ -27,10 +27,10 @@ function getSportskiObjekti() {
 				red += "<td><img width=50 height=50 src='" + s.logo + "'</td>";
 				red += "<td><a href='/objekat_pregled.html?objekatId=" + s.id + "' class='btn btn-dark'>" + "Pregled" + "</a></td>";
 				red += "</tr>";
-				
-                elem.append(red);
-            }
-        }
+
+				elem.append(red);
+			}
+		}
 	});
 }
 
@@ -41,7 +41,7 @@ function pretraga() {
 	let otvoreni = $('#otvoreni').is(':checked');
 	let rastuceSortiranje = $("#sortRastuce").is(":checked");
 	let sortiranjePo = $("#sortiranjePo").val();
-	
+
 	let queryParams = jQuery.param({
 		pretragaTekst,
 		pretragaPo,
@@ -50,18 +50,18 @@ function pretraga() {
 		rastuceSortiranje,
 		sortiranjePo
 	})
-	
+
 	$.ajax({
-        url: "sportski-objekti/pretraga?" + queryParams,
-        type: "GET",
-        contentType: "application/json",
-        dataType: "json",
-        complete: function(data) {
-            const sportskiObjekti = data.responseJSON;
-            
-            let elem = $("#objekti");
-            elem.html("");
-            for (let s of sportskiObjekti) {
+		url: "sportski-objekti/pretraga?" + queryParams,
+		type: "GET",
+		contentType: "application/json",
+		dataType: "json",
+		complete: function(data) {
+			const sportskiObjekti = data.responseJSON;
+
+			let elem = $("#objekti");
+			elem.html("");
+			for (let s of sportskiObjekti) {
 				let red = "<tr>"
 				red += "<td>" + s.naziv + "</td>";
 				red += "<td>" + s.tipObjekta + "</td>";
@@ -72,22 +72,22 @@ function pretraga() {
 				red += "<td>" + s.prosecnaOcena + "</td>";
 				red += "<td><img width=50 height=50 src='" + s.logo + "'</td>";
 				red += "</tr>";
-				
-                elem.append(red);
-            }
-        }
+
+				elem.append(red);
+			}
+		}
 	});
 }
 
 function getUloga() {
 	$.ajax({
-        url: "korisnik/uloga",
-        type: "GET",
-        success: function(data) {
-            if (data === 'KUPAC') {
+		url: "korisnik/uloga",
+		type: "GET",
+		success: function(data) {
+			if (data === 'KUPAC') {
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_kupac.html'>Kupac</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
-        	} else if (data === "MENADZER") {
+			} else if (data === "MENADZER") {
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_menadzer.html'>Menadzer</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
 			} else if (data === "ADMINISTRATOR") {
@@ -103,11 +103,10 @@ function getUloga() {
 
 function logout() {
 	$.ajax({
-        url: "/logout",
-        type: "POST",
-        complete: function(data) {
+		url: "/logout",
+		type: "POST",
+		complete: function(data) {
 			window.location.reload();
 		}
 	});
 }
-	
