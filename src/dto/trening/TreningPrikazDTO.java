@@ -14,6 +14,7 @@ public class TreningPrikazDTO {
 	private String slikaURL;
 	private String datum;
 	private String status;
+	private boolean otkazan;
 	
 	public String getId() {
 		return id;
@@ -86,6 +87,12 @@ public class TreningPrikazDTO {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public boolean isOtkazan() {
+		return otkazan;
+	}
+	public void setOtkazan(boolean otkazan) {
+		this.otkazan = otkazan;
 	}
 	
 	

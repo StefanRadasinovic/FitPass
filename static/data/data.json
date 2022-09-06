@@ -1,52 +1,76 @@
 {
   "korisnici": [
     {
-      "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
-      "uloga": "MENADZER",
+      "id": "9a6f8c9b-0d85-496d-8a32-579cc99fca0c",
+      "uloga": "KUPAC",
       "tip": "BRONZANI",
-      "ime": "Jovan",
-      "prezime": "Jovanovic",
-      "korisnickoIme": "a",
-      "lozinka": "aa",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
+      "korisnickoIme": "zarko@gmail.com",
+      "lozinka": "123",
       "pol": "MUSKI",
-      "datumRodjenja": "2022-09-20",
-      "sakupljeniBodovi": 0,
-      "objekatKojimUpravlja": "Test"
+      "datumRodjenja": "2000-09-15",
+      "sakupljeniBodovi": 6
     },
     {
-      "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
-      "uloga": "TRENER",
+      "id": "7047dc9e-85b0-473d-b218-aa338e9f0ef6",
+      "uloga": "ADMIN",
       "tip": "BRONZANI",
-      "ime": "Jovan",
-      "prezime": "Jovanovic",
-      "korisnickoIme": "b",
-      "lozinka": "bb",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
+      "korisnickoIme": "p@gmail.com",
+      "lozinka": "123",
       "pol": "MUSKI",
-      "datumRodjenja": "2022-09-20",
+      "datumRodjenja": "2000-09-15",
       "sakupljeniBodovi": 0
     },
     {
       "id": "c89fa961-027f-42a0-94e9-129305450151",
       "uloga": "MENADZER",
       "tip": "BRONZANI",
-      "ime": "Jovan",
-      "prezime": "Jovanovic",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
       "korisnickoIme": "mm",
       "lozinka": "a",
       "pol": "MUSKI",
-      "datumRodjenja": "2022-09-20",
+      "datumRodjenja": "2000-09-15",
       "sakupljeniBodovi": 0
+    },
+    {
+      "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
+      "uloga": "TRENER",
+      "tip": "BRONZANI",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
+      "korisnickoIme": "b",
+      "lozinka": "bb",
+      "pol": "MUSKI",
+      "datumRodjenja": "2000-09-15",
+      "sakupljeniBodovi": 0
+    },
+    {
+      "id": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
+      "uloga": "MENADZER",
+      "tip": "BRONZANI",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
+      "korisnickoIme": "a",
+      "lozinka": "aa",
+      "pol": "MUSKI",
+      "datumRodjenja": "2000-09-15",
+      "sakupljeniBodovi": 0,
+      "objekatKojimUpravlja": "Test"
     },
     {
       "id": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
       "uloga": "KUPAC",
       "tip": "BRONZANI",
-      "ime": "Jovan",
-      "prezime": "Jovanovic",
+      "ime": "Zarko",
+      "prezime": "Zarkovic",
       "korisnickoIme": "j@yahoo.com",
       "lozinka": "123",
       "pol": "MUSKI",
-      "datumRodjenja": "2022-09-20",
+      "datumRodjenja": "2000-09-15",
       "sakupljeniBodovi": -54
     }
   ],
@@ -92,6 +116,20 @@
       "radnoVreme": "",
       "logo": "/slike/1661722216774.jpg",
       "obrisan": false
+    },
+    {
+      "id": "a62d25c8-b379-4d54-a43c-5e5ffcb526e0",
+      "naziv": "Bazen na Grbavici",
+      "tipObjekta": "BAZEN",
+      "sadrzaj": "",
+      "status": "NEAKTIVAN",
+      "lokacija": {
+        "adresa": "Mise Dimitrijevica 15"
+      },
+      "prosecnaOcena": 0.0,
+      "radnoVreme": "",
+      "logo": "/slike/1662398919372.jpg",
+      "obrisan": true
     }
   ],
   "treninzi": [
@@ -107,7 +145,7 @@
       "otkazan": true,
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f8",
       "sportskiObjekat": "Test",
-      "obrisan": true
+      "obrisan": false
     },
     {
       "id": "4583b060-c20f-4403-b6ed-6b5bfb8a1eb4",
@@ -122,6 +160,21 @@
       "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
       "sportskiObjekat": "Test",
       "obrisan": false
+    },
+    {
+      "id": "eb3a1bc2-93c3-4b68-8e3d-9f253ea292f7",
+      "naziv": "Personalni za Zarka",
+      "tip": "INDIVIDUALNI",
+      "trajanje": 50,
+      "opis": "Opis2",
+      "slika": "/slike/1662399397716.jpg",
+      "datum": "2022-09-08T19:36",
+      "cena": 1000,
+      "otkazan": true,
+      "trener": "3c5c0203-7f10-478b-b1b3-feae97fb58f9",
+      "sportskiObjekat": "Test",
+      "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
+      "obrisan": false
     }
   ],
   "istorija": [
@@ -130,6 +183,12 @@
       "datumIVremePrijave": "2022-09-05T13:35:52.926705700",
       "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
       "trening": "4583b060-c20f-4403-b6ed-6b5bfb8a1eb4"
+    },
+    {
+      "id": "216a3362-87df-4e0a-9609-a3129dc936b8",
+      "datumIVremePrijave": "2022-09-05T19:40:10.017126200",
+      "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915",
+      "trening": "eb3a1bc2-93c3-4b68-8e3d-9f253ea292f7"
     }
   ],
   "clanarine": [
@@ -158,12 +217,23 @@
       "id": "e601079c-b940-40b2-8de2-2be4fc325c06",
       "cena": 3000.0,
       "tip": "MESECNA",
-      "status": "AKTIVNA",
+      "status": "NEAKTIVNA",
       "datumPlacanja": "2022-09-05T13:35:45.121757600",
       "datumVazenja": "2022-10-05T13:35:45.125755",
       "terminaUkupno": 12,
-      "terminaOstalo": 11,
+      "terminaOstalo": 10,
       "kupac": "9de3d690-5bb0-4fce-ab25-a6e2901cb915"
+    },
+    {
+      "id": "3955cb0e-fe17-4a0c-959f-6df5ec5146f7",
+      "cena": 3000.0,
+      "tip": "MESECNA",
+      "status": "AKTIVNA",
+      "datumPlacanja": "2022-09-05T19:46:15.991710500",
+      "datumVazenja": "2022-10-05T19:46:15.991710500",
+      "terminaUkupno": 12,
+      "terminaOstalo": 12,
+      "kupac": "9a6f8c9b-0d85-496d-8a32-579cc99fca0c"
     }
   ]
 }

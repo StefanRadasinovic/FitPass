@@ -61,7 +61,7 @@ function ucitajTreningeZaObjekat(objekatId) {
 				red += "<td>" + t.kupac + "</td>";
 				red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
 				red += "<td><a class='btn btn-dark' href='/izmena_treninga.html?treningId=" + t.id + "'>Izmena</td>";
-				red += `<td><button class='btn btn-danger' onclick='obrisi(${t.id})'>Obrisi</button></td>`;
+				red += `<td><button class='btn btn-danger' onclick='obrisi("${t.id}")'>Obrisi</button></td>`;
 				tableBody.append(red);
 
 			}

@@ -121,6 +121,7 @@ public class TreningController {
 				dto.setTip(t.getTip().toString());
 				dto.setTrajanje(t.getTrajanje());
 				dto.setDatum(t.getDatum());
+				dto.setOtkazan(t.isOtkazan());
 				
 				KorisnikService ks = new KorisnikService();
 				Korisnik trener = ks.getPoId(t.getTrener());
@@ -179,6 +180,7 @@ public class TreningController {
 				dto.setTip(t.getTip().toString());
 				dto.setTrajanje(t.getTrajanje());
 				dto.setDatum(t.getDatum());
+				dto.setOtkazan(t.isOtkazan());
 				
 				KorisnikService ks = new KorisnikService();
 				Korisnik trener = ks.getPoId(t.getTrener());

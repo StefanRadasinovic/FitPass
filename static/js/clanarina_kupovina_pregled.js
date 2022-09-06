@@ -49,6 +49,8 @@ function kupovina() {
 		},
 		success: function(data) {
 			alert("Uspesna kupovina");
+		},
+		complete: function() {
 			window.location.href = "/";
 		}
 	});

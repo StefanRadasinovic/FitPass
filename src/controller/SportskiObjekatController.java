@@ -182,6 +182,8 @@ public class SportskiObjekatController {
 			String tip = req.queryParams("tip");
 			String adresa = req.queryParams("adresa");
 			String menadzer = req.queryParams("menadzer");
+			String radnoVreme = req.queryParams("radnoVreme");
+			String sadrzaj = req.queryParams("sadrzaj");
 			
 			if (naziv.isEmpty() || tip.isEmpty() || menadzer.isEmpty()) {
 				res.status(400);
@@ -213,6 +215,8 @@ public class SportskiObjekatController {
 				sportskiObjekat.setNaziv(naziv);
 				sportskiObjekat.setTipObjekta(TipObjekta.valueOf(tip));
 				sportskiObjekat.setStatus(StatusObjekta.NEAKTIVAN);
+				sportskiObjekat.setSadrzaj(sadrzaj);
+				sportskiObjekat.setRadnoVreme(radnoVreme);
 				
 				Lokacija l = new Lokacija();
 				l.setAdresa(adresa);

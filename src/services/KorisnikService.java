@@ -106,7 +106,7 @@ public class KorisnikService {
 	public void azuriraj(Korisnik korisnik) {
 		List<Korisnik> korisnici = (List<Korisnik>) DataManager.data.getKorisnici();
 	    for (Korisnik k : korisnici) {
-	    	if (korisnik.getId().equals(korisnik.getId())) {
+	    	if (k.getId().equals(korisnik.getId())) {
 	    	    k.setIme(korisnik.getIme());
 	    	    k.setPrezime(korisnik.getPrezime());
 	    	    k.setDatumRodjenja(korisnik.getDatumRodjenja());

@@ -57,13 +57,14 @@ function ucitajGrupneTreninge() {
 						red += "<td>" + t.cena + "</td>";
 						red += "<td>" + t.datum + "</td>";
 						red += "<td>" + t.trener + "</td>";
+						red += "<td>" + t.otkazan + "</td>";
 						if (t.kupac) {
 							red += "<td>" + t.kupac + "</td>";
 						} else {
 							red += "<td>/</td>";
 						}
 						red += "<td><img width=50 height=50 src='" + t.slikaURL + "'</td>";
-						red += "<td><button class='btn btn-danger' onclick='otkazi(" + t.id + ")'>Otkazivanje</button></td>";
+						red += `<td><button class='btn btn-danger' onclick='otkazi("${t.id}")'>Otkazivanje</button></td>`;
 						tableBody.append(red);
 					}
 

@@ -85,15 +85,19 @@ function getUloga() {
 		type: "GET",
 		success: function(data) {
 			if (data === 'KUPAC') {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/izmena_profila.html'>Profil</a></li>")
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_kupac.html'>Kupac</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
 			} else if (data === "MENADZER") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/izmena_profila.html'>Profil</a></li>")
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_menadzer.html'>Menadzer</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
-			} else if (data === "ADMINISTRATOR") {
+			} else if (data === "ADMIN") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/izmena_profila.html'>Profil</a></li>")
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_admin.html'>Admin</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
 			} else if (data === "TRENER") {
+				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/izmena_profila.html'>Profil</a></li>")
 				$("#navbar").append("<li class='nav-item'><a class='nav-link' href='/meni/meni_trener.html'>Trener</a></li>")
 				$("#navbar").append("<li class='nav-item'><button class='btn btn-dark' onclick='logout()'>Logout</button></li>");
 			}

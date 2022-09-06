@@ -46,7 +46,6 @@ function sacuvaj() {
 		success: function(data) {
 			alert("Uspesno sacuvano");
 			window.location.reload();
-
 		}
 	});
 }
