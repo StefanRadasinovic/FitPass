@@ -2,6 +2,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 import data.DataManager;
@@ -89,6 +90,16 @@ public class KorisnikService {
 		}
 		
 		return pomocna;
+	}
+	
+	public void ukloniSportskiObjekat(String sportskiObjekat) {
+		for (Korisnik korisnik : svi()) {
+			if (Objects.equals(korisnik.getObjekatKojimUpravlja(), sportskiObjekat)) {
+				korisnik.setObejekatKojimUpravlja(null);
+			}
+		}
+		
+		DataManager.saveData();
 	}
 	
 	public List<Korisnik> sviTreneri() {

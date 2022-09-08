@@ -17,7 +17,7 @@ function getMenadzeri() {
 			}
 
 			if (menadzeriBezObjekta.length === 0) {
-				$("#dugmePotvrda").attr('disabled', true);
+				window.location.href = "/kreiranje_korisnika.html"
 			}
 		}
 	});

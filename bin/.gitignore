@@ -1,3 +1,6 @@
+/app/
 /controller/
-/services/
+/data/
 /dto/
+/models/
+/services/

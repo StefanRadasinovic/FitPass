@@ -25,6 +25,7 @@ import models.Lokacija;
 import models.SportskiObjekat;
 import models.StatusObjekta;
 import models.TipObjekta;
+import services.KorisnikService;
 import services.SportskiObjektiService;
 import spark.Session;
 
@@ -263,6 +264,8 @@ public class SportskiObjekatController {
 			
 			SportskiObjektiService service = new SportskiObjektiService();
 			SportskiObjekat sob = service.getObjekatPoId(objekatId);
+			KorisnikService kService = new KorisnikService();
+			kService.ukloniSportskiObjekat(objekatId);
 			service.obrisi(sob);
 			
 			return "Uspesno obrisan";
